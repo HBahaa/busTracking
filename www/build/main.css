@@ -28259,6 +28259,19 @@ map-page #map {
   height: 100%;
 }
 
+map-page #over_map {
+  background-color: #fefefe;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 99;
+}
+
+map-page #over_map ion-label {
+  color: #aaa;
+}
+
 page-register1 .register1-content {
   background-image: url(../assets/imgs/8.jpg);
   background-size: cover;
@@ -28365,12 +28378,12 @@ page-register1 .register1-content ion-icon {
   color: #fff;
 }
 
-page-register2 .register-content {
+page-register2 .login-content {
   background-image: url(../assets/imgs/8.jpg);
   background-size: cover;
 }
 
-page-register2 .register-content ion-row {
+page-register2 .login-content ion-row {
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -28378,11 +28391,12 @@ page-register2 .register-content ion-row {
   text-align: center;
 }
 
-page-register2 .register-content ion-col ion-label {
+page-register2 .login-content ion-col ion-label {
   padding-top: 0px !important;
 }
 
-page-register2 .register-content .scroll-content {
+page-register2 .login-content .scroll-content {
+  padding-bottom: 0 !important;
   text-align: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -28403,67 +28417,70 @@ page-register2 .register-content .scroll-content {
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-page-register2 .register-content .list-md .item-block .item-inner {
+page-register2 .login-content .list-md .item-block .item-inner {
   border-bottom: 0px solid #dedede;
 }
 
-page-register2 .register-content .list-md .item-block .item-inner:focus {
+page-register2 .login-content .list-md .item-block .item-inner:focus {
   border-bottom: 0px solid #dedede;
 }
 
-page-register2 .register-content ion-item.item.item-block.item-input {
+page-register2 .login-content ion-item.item.item-block.item-input {
   border-bottom-width: 0px;
   border-radius: 30px;
 }
 
-page-register2 .register-content .item {
+page-register2 .login-content .item {
   background: rgba(225, 225, 225, 0.2);
   margin-bottom: 10px;
   border-radius: 5px;
   border-bottom-width: 0;
 }
 
-page-register2 .register-content .item .text-input {
+page-register2 .login-content .item .text-input {
   color: #fff;
 }
 
-page-register2 .register-content .item input::-moz-placeholder {
+page-register2 .login-content .item input::-moz-placeholder {
   color: #fff !important;
 }
 
-page-register2 .register-content .item input:-moz-placeholder {
+page-register2 .login-content .item input:-moz-placeholder {
   color: #fff !important;
 }
 
-page-register2 .register-content .item *::-webkit-input-placeholder {
+page-register2 .login-content .item *::-webkit-input-placeholder {
   color: #fff !important;
 }
 
-page-register2 .register-content ion-item {
+page-register2 .login-content ion-item {
   padding-left: 30px !important;
   font-size: 0.9em;
   margin-bottom: 10px;
 }
 
-page-register2 .register-content ion-col h3 {
+page-register2 .login-content ion-col h3 {
   color: #fff;
-  font-size: 20px;
+  font-size: 26px;
+  text-decoration: underline;
+  font-family: arail;
 }
 
-page-register2 .register-content ion-col ion-label {
+page-register2 .login-content ion-col ion-label {
   font-size: 18px;
   padding-top: 10px;
   color: #fff;
 }
 
-page-register2 .register-content .btn {
+page-register2 .login-content .btn {
   margin-top: 30px;
   margin-bottom: 40px;
 }
 
-page-register2 .register-content ion-icon {
+page-register2 .login-content ion-icon {
   margin-right: 5px;
+  color: #fff;
 }

@@ -3,7 +3,7 @@
 	<h2>{{ 'HOME_PAGE.title' | translate }}</h2>
 
 	<!-- Segment in content -->
-<!-- 	<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)" style="margin-bottom: 10px; flex:initial">
+	<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)" style="margin-bottom: 10px; flex:initial; display: none">
 		<ion-segment-button value="en">
 			{{ 'BUTTONS.btn_eng' | translate }}
 		</ion-segment-button>
@@ -11,7 +11,7 @@
 			{{ 'BUTTONS.btn_ar' | translate }}
 		</ion-segment-button>
 	</ion-segment>
- -->
+
 
     <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.login' | translate }}</button>
     <h3>{{ 'HOME_PAGE.or' | translate }}</h3>

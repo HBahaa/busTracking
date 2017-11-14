@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Keyboard } from '@ionic-native/keyboard'
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -48,7 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     StatusBar,
     SplashScreen,
+    Keyboard,
     Geolocation,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

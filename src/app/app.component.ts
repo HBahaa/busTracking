@@ -2,13 +2,18 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
+// import { Register2Page } from '../pages/register2/register2';
+// import { MapPage } from '../pages/map/map';
+
+declare var cordova:any;
+declare var window:any;
 
 @Component({
   templateUrl: 'app.html'
@@ -21,16 +26,27 @@ export class MyApp {
   pages: Array<{icon: string, title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    private translateService: TranslateService) {
+    private translateService: TranslateService, private keyboard: Keyboard) {
 
     // this.initializeApp();
 
     platform.ready().then(() => {
+
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        console.log("window.cordova && window.cordova.plugins.Keyboard")
+        // This requires installation of https://github.com/driftyco/ionic-plugin-keyboard
+        // and can only affect native compiled Ionic2 apps (not webserved).
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
+
+      this.keyboard.disableScroll(true);
+
       statusBar.styleDefault();
       splashScreen.hide();
 
       translateService.setDefaultLang('en');
-      translateService.use('en');            
+      translateService.use('en');
+                
     });
 
     // used for an example of ngFor and navigation

@@ -25,11 +25,11 @@
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.heba.busTracking"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.heba.busTracking"
-        },
         "cordova-plugin-googlemaps": {
             "API_KEY_FOR_ANDROID": "AIzaSyCu56D4qgNvIbI0DOHf-a5VSTMadDVPOhA",
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "io.ionic.starter"
         }
     },

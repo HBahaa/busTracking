@@ -7,7 +7,7 @@ webpackJsonp([0],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChildrenPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__details_details__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__details_details__ = __webpack_require__(218);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -31,7 +31,7 @@ var ChildrenPage = (function () {
 }());
 ChildrenPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>My Children</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n        <ion-row>\n          <ion-col col-4><span>Name:</span></ion-col><ion-col col-8><p>Heba</p></ion-col>\n          <ion-col col-4><span>Status:</span></ion-col><ion-col col-8><p>in bus</p></ion-col>\n\n        </ion-row>\n        <button ion-button color="mainColor" (click)="childDetails()" >details</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/children/children.html"*/
+        selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>My Children</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n        <ion-row>\n          <ion-col col-4><span>Name:</span></ion-col><ion-col col-8><p>Heba</p></ion-col>\n          <ion-col col-4><span>Status:</span></ion-col><ion-col col-8><p>in bus</p></ion-col>\n\n        </ion-row>\n        <button ion-button color="mainColor" (click)="childDetails()" >details</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
 ], ChildrenPage);
@@ -51,7 +51,7 @@ ChildrenPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__map_map__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__map_map__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -85,7 +85,7 @@ var Register1Page = (function () {
 }());
 Register1Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-register1',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/register1/register1.html"*/'<ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>Register</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="National ID" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="Secert Key" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> Send</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>Already have account</button>\n</ion-content>\n\n<!-- <ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>Register</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.nationalID\' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.secertKey\' | translate }}" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.send\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear> {{ \'BUTTONS.alreadyHaveAccount\' | translate }}</button>\n</ion-content> -->'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/register1/register1.html"*/
+        selector: 'page-register1',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register1/register1.html"*/'<ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>Register</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="National ID" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="Secert Key" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> Send</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>Already have account</button>\n</ion-content>\n\n<!-- <ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>Register</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.nationalID\' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.secertKey\' | translate }}" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.send\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear> {{ \'BUTTONS.alreadyHaveAccount\' | translate }}</button>\n</ion-content> -->'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register1/register1.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], Register1Page);
@@ -128,7 +128,7 @@ webpackEmptyAsyncContext.id = 167;
 
 /***/ }),
 
-/***/ 216:
+/***/ 217:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -184,7 +184,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/home/home.html"*/'<ion-content padding class="home-content">\n	<!-- <img src="assets/imgs/logo.png" class="logo"> -->\n	<h2>{{ \'HOME_PAGE.title\' | translate }}</h2>\n\n	<!-- Segment in content -->\n<!-- 	<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)" style="margin-bottom: 10px; flex:initial">\n		<ion-segment-button value="en">\n			{{ \'BUTTONS.btn_eng\' | translate }}\n		</ion-segment-button>\n		<ion-segment-button value="ar">\n			{{ \'BUTTONS.btn_ar\' | translate }}\n		</ion-segment-button>\n	</ion-segment>\n -->\n\n    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.login\' | translate }}</button>\n    <h3>{{ \'HOME_PAGE.or\' | translate }}</h3>\n    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.register\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/'<ion-content padding class="home-content">\n	<!-- <img src="assets/imgs/logo.png" class="logo"> -->\n	<h2>{{ \'HOME_PAGE.title\' | translate }}</h2>\n\n	<!-- Segment in content -->\n	<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)" style="margin-bottom: 10px; flex:initial; display: none">\n		<ion-segment-button value="en">\n			{{ \'BUTTONS.btn_eng\' | translate }}\n		</ion-segment-button>\n		<ion-segment-button value="ar">\n			{{ \'BUTTONS.btn_ar\' | translate }}\n		</ion-segment-button>\n	</ion-segment>\n\n\n    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.login\' | translate }}</button>\n    <h3>{{ \'HOME_PAGE.or\' | translate }}</h3>\n    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.register\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
 ], HomePage);
@@ -193,7 +193,7 @@ HomePage = __decorate([
 
 /***/ }),
 
-/***/ 217:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -219,7 +219,7 @@ var DetailsPage = (function () {
 }());
 DetailsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-details',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/details/details.html"*/'<ion-header>\n  <ion-navbar color="navbarColor">\n    <ion-title>\n      Details\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-card>\n		<img src="assets/imgs/1.png"/>\n		<ion-card-content>\n			<ion-card-title color="mainColor">Heba Bahaa</ion-card-title>\n			<ion-row>\n	        	<!-- <ion-col col-5><h2>Child Name:</h2></ion-col><ion-col col-7><h2>heba</h2></ion-col> -->\n	        	<ion-col col-12><br /></ion-col>\n	        	<ion-col col-5><h2>Child ID:</h2></ion-col><ion-col col-7><h2>1111</h2></ion-col>\n	        	<ion-col col-5><h2>Status:</h2></ion-col><ion-col col-7><h2>in bus</h2></ion-col>\n	        	<ion-col col-12><hr /></ion-col>\n	        	<ion-col col-5><h2>Bus Number:</h2></ion-col><ion-col col-7><h2>1234</h2></ion-col>\n	        	<ion-col col-5><h2>Driver Name:</h2></ion-col><ion-col col-7><h2>driver1</h2></ion-col>\n	        	<ion-col col-5><h2>Driver Phone:</h2></ion-col><ion-col col-7><h2>11111</h2></ion-col>\n	        </ion-row>\n		</ion-card-content>\n	</ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/details/details.html"*/
+        selector: 'page-details',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/details/details.html"*/'<ion-header>\n  <ion-navbar color="navbarColor">\n    <ion-title>\n      Details\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-card>\n		<img src="assets/imgs/1.png"/>\n		<ion-card-content>\n			<ion-card-title color="mainColor">Heba Bahaa</ion-card-title>\n			<ion-row>\n	        	<!-- <ion-col col-5><h2>Child Name:</h2></ion-col><ion-col col-7><h2>heba</h2></ion-col> -->\n	        	<ion-col col-12><br /></ion-col>\n	        	<ion-col col-5><h2>Child ID:</h2></ion-col><ion-col col-7><h2>1111</h2></ion-col>\n	        	<ion-col col-5><h2>Status:</h2></ion-col><ion-col col-7><h2>in bus</h2></ion-col>\n	        	<ion-col col-12><hr /></ion-col>\n	        	<ion-col col-5><h2>Bus Number:</h2></ion-col><ion-col col-7><h2>1234</h2></ion-col>\n	        	<ion-col col-5><h2>Driver Name:</h2></ion-col><ion-col col-7><h2>driver1</h2></ion-col>\n	        	<ion-col col-5><h2>Driver Phone:</h2></ion-col><ion-col col-7><h2>11111</h2></ion-col>\n	        </ion-row>\n		</ion-card-content>\n	</ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/details/details.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
 ], DetailsPage);
@@ -228,15 +228,15 @@ DetailsPage = __decorate([
 
 /***/ }),
 
-/***/ 218:
+/***/ 219:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register2_register2__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register2_register2__ = __webpack_require__(220);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -276,23 +276,21 @@ var MapPage = (function () {
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["b" /* GoogleMapsEvent */].MAP_READY).subscribe(function () {
             console.log('Map is ready!');
             _this.map.addEventListener(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["b" /* GoogleMapsEvent */].MAP_CLICK).subscribe(function (data) {
-                console.log("map clicked = ", JSON.stringify(data));
                 _this.lat = data[0]['lat'];
                 _this.lng = data[0]['lng'];
                 _this.getAddress(_this.lat, _this.lng);
-                _this.locatin = { 'lat': _this.lat, 'lng': _this.lng };
+                _this.location = { 'lat': _this.lat, 'lng': _this.lng };
             });
             _this.map.getMyLocation().then(function (location) {
                 _this.lat = location['latLng']['lat'];
                 _this.lng = location['latLng']['lng'];
                 _this.getAddress(_this.lat, _this.lng);
-                _this.locatin = { 'lat': _this.lat, 'lng': _this.lng };
-                console.log("your location", JSON.stringify(location.latLng));
+                _this.location = { 'lat': _this.lat, 'lng': _this.lng };
             });
             _this.map.setMyLocationEnabled(true);
-            _this.map.addEventListener(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["b" /* GoogleMapsEvent */].MY_LOCATION_BUTTON_CLICK).subscribe(function () {
-                console.log("my location button click");
-            });
+            // this.map.addEventListener(GoogleMapsEvent.MY_LOCATION_BUTTON_CLICK).subscribe(()=>{
+            // 	console.log("my location button click")
+            // }) 
         });
         // Wait the MAP_READY before using any methods.
         // this.map.one(GoogleMapsEvent.MAP_READY)
@@ -346,7 +344,7 @@ var MapPage = (function () {
         geocoder.geocode({ 'latLng': location }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 _this.address = results[0].formatted_address;
-                alert("from" + _this.address); // if address found, pass to processing function
+                // alert("from" + this.address);          // if address found, pass to processing function
             }
             else {
                 alert("Geocode failure: " + status); // alert any other error(s)
@@ -354,14 +352,41 @@ var MapPage = (function () {
             }
         });
     };
+    MapPage.prototype.codeAddress = function () {
+        // console.log(ev.target.value);
+        var _this = this;
+        if (this.searchQuery != '') {
+            var geocoder = new google.maps.Geocoder(); // create a geocoder object
+            geocoder.geocode({ 'address': this.searchQuery }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    _this.map.clear().then(function () {
+                        _this.map.addMarker({
+                            title: _this.searchQuery,
+                            icon: 'red',
+                            animation: 'DROP',
+                            position: results[0].geometry.location
+                        });
+                        _this.address = _this.searchQuery;
+                        _this.location = results[0].geometry.location;
+                        _this.searchQuery = '';
+                    }).catch(function () {
+                        console.log("clear map");
+                    });
+                }
+                else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+        }
+    };
     MapPage.prototype.goToRegister = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */], { 'param1': this.address, 'param2': this.locatin });
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */], { 'param1': this.address, 'param2': this.location });
     };
     return MapPage;
 }());
 MapPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'map-page',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/map/map.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Select Your Home\n    </ion-title>\n    <button ion-button item-end>Next</button>\n  </ion-navbar>\n</ion-header> -->\n\n\n<ion-header>\n  <ion-toolbar>\n    <ion-title>Select your home</ion-title>\n    <ion-buttons end>\n      <button ion-button color="light" (click)="goToRegister()">\n        Next\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n \n<ion-content>\n    <div id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/map/map.html"*/
+        selector: 'map-page',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/map/map.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>Select your home</ion-title>\n    <ion-buttons end>\n      <button ion-button color="light" (click)="goToRegister()">\n        Next\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n \n<ion-content>\n  <div id="over_map">\n    <!-- <ion-item>\n      \n      <ion-input type="text" placeholder="enter your address" name="nationalID" [(ngModel)]="inpt" (keyup)="codeAddress()"></ion-input>\n      <ion-label><ion-icon name="search"></ion-icon></ion-label>\n    </ion-item> -->\n    <!-- (keyup)="updateList($event)" -->\n\n    <ion-searchbar primary [(ngModel)]="searchQuery" show-cancel="true" placeholder="Search"></ion-searchbar>\n    <button ion-button icon-only block (click)="codeAddress()"><ion-icon name="redo"></ion-icon></button>\n  </div>\n  <div id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/map/map.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */]])
 ], MapPage);
@@ -370,7 +395,7 @@ MapPage = __decorate([
 
 /***/ }),
 
-/***/ 219:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -400,8 +425,6 @@ var Register2Page = (function () {
         this.address = this.navParams.get('param1');
         this.location = this.navParams.get('param2');
     }
-    Register2Page.prototype.ionViewDidLoad = function () {
-    };
     Register2Page.prototype.RegisterFN = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__children_children__["a" /* ChildrenPage */]);
     };
@@ -409,7 +432,7 @@ var Register2Page = (function () {
 }());
 Register2Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-register2',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/register2/register2.html"*/'<ion-content class="register-content">\n  <form #regiseterForm="ngForm" (ngSubmit)="RegisterFN()">\n    <ion-row>\n      <ion-col>\n        <h3>Registration</h3>\n        <ion-list inset>\n          <ion-item>\n            <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="username" required></ion-input>\n          </ion-item>\n          <!-- <ion-item>\n            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>\n            <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>\n          </ion-item> -->\n          <ion-item>\n            <ion-label> <ion-icon name="pin"></ion-icon></ion-label>\n            <ion-input type="text" name="address" [(ngModel)]="address" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Phone Number" name="phone" [(ngModel)]="phone" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n            <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>\n          </ion-item>\n          <button ion-button type="submit" color="mainColor" block round [disabled]="!regiseterForm.form.valid">\n            <ion-icon name="log-in"></ion-icon> Register\n          </button>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/register2/register2.html"*/
+        selector: 'page-register2',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register2/register2.html"*/'<ion-content class="login-content">\n  <form #regiseterForm="ngForm" (ngSubmit)="RegisterFN()">\n    <ion-row>\n      <ion-col>\n        <h3>Registration</h3>\n        <ion-list inset>\n          <!-- <ion-item>\n            <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="username" required></ion-input>\n          </ion-item> -->\n          <ion-item>\n            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>\n            <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="pin"></ion-icon></ion-label>\n            <ion-input type="text" name="address" [(ngModel)]="address" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Phone Number" name="phone" [(ngModel)]="phone" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n            <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>\n          </ion-item>\n          <button ion-button type="submit" color="mainColor" block round [disabled]="!regiseterForm.form.valid">\n            <ion-icon name="log-in"></ion-icon> Register\n          </button>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register2/register2.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
 ], Register2Page);
@@ -418,7 +441,7 @@ Register2Page = __decorate([
 
 /***/ }),
 
-/***/ 220:
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -460,7 +483,7 @@ var NotificationsPage = NotificationsPage_1 = (function () {
 }());
 NotificationsPage = NotificationsPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-notifications',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/notifications/notifications.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">\n      <p>{{item.date}}</p>\n      <h2>{{item.title}}</h2>\n      <h3>{{item.data}}</h3>\n    </button>\n\n</ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/notifications/notifications.html"*/
+        selector: 'page-notifications',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/notifications/notifications.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">\n      <p>{{item.date}}</p>\n      <h2>{{item.title}}</h2>\n      <h3>{{item.data}}</h3>\n    </button>\n\n</ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/notifications/notifications.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
 ], NotificationsPage);
@@ -470,7 +493,7 @@ var NotificationsPage_1;
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -496,7 +519,7 @@ var ProfilePage = (function () {
 }());
 ProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-profile',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/profile/profile.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Profile</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/profile/profile.html"*/
+        selector: 'page-profile',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/profile/profile.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Profile</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/profile/profile.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
 ], ProfilePage);
@@ -505,13 +528,13 @@ ProfilePage = __decorate([
 
 /***/ }),
 
-/***/ 222:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(238);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -519,7 +542,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -530,29 +553,31 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_http_loader__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_component__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_notifications_notifications__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_profile_profile__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_details_details__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_children_children__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_login_login__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_register1_register1__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_register2_register2__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_map_map__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_keyboard__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_google_maps__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_component__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_home__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_notifications_notifications__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_profile_profile__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_details_details__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_children_children__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_login_login__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_register1_register1__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_register2_register2__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_map_map__ = __webpack_require__(219);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -576,7 +601,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 function HttpLoaderFactory(http) {
-    return new __WEBPACK_IMPORTED_MODULE_11__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http);
+    return new __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http);
 }
 var AppModule = (function () {
     function AppModule() {
@@ -586,51 +611,52 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_notifications_notifications__["a" /* NotificationsPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_register1_register1__["a" /* Register1Page */],
-            __WEBPACK_IMPORTED_MODULE_20__pages_register2_register2__["a" /* Register2Page */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_details_details__["a" /* DetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_profile_profile__["a" /* ProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_children_children__["a" /* ChildrenPage */],
-            __WEBPACK_IMPORTED_MODULE_21__pages_map_map__["a" /* MapPage */]
+            __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_notifications_notifications__["a" /* NotificationsPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_register1_register1__["a" /* Register1Page */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_register2_register2__["a" /* Register2Page */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_details_details__["a" /* DetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_profile_profile__["a" /* ProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_children_children__["a" /* ChildrenPage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_map_map__["a" /* MapPage */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */], {}, {
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_common_http__["b" /* HttpClientModule */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */], { scrollAssist: false, autoFocusAssist: false }, {
                 links: []
             }),
-            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+            __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__["b" /* TranslateModule */].forRoot({
                 loader: {
-                    provide: __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["a" /* TranslateLoader */],
+                    provide: __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__["a" /* TranslateLoader */],
                     useFactory: HttpLoaderFactory,
-                    deps: [__WEBPACK_IMPORTED_MODULE_9__angular_common_http__["a" /* HttpClient */]]
+                    deps: [__WEBPACK_IMPORTED_MODULE_10__angular_common_http__["a" /* HttpClient */]]
                 }
             })
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_notifications_notifications__["a" /* NotificationsPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_register1_register1__["a" /* Register1Page */],
-            __WEBPACK_IMPORTED_MODULE_20__pages_register2_register2__["a" /* Register2Page */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_details_details__["a" /* DetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_profile_profile__["a" /* ProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_children_children__["a" /* ChildrenPage */],
-            __WEBPACK_IMPORTED_MODULE_21__pages_map_map__["a" /* MapPage */]
+            __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_notifications_notifications__["a" /* NotificationsPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_register1_register1__["a" /* Register1Page */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_register2_register2__["a" /* Register2Page */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_details_details__["a" /* DetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_profile_profile__["a" /* ProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_children_children__["a" /* ChildrenPage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_map_map__["a" /* MapPage */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__["a" /* Geolocation */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__["a" /* GoogleMaps */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_keyboard__["a" /* Keyboard */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_google_maps__["a" /* GoogleMaps */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] }
         ]
     })
@@ -640,7 +666,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 306:
+/***/ 307:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -649,11 +675,12 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_notifications_notifications__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_profile_profile__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_notifications_notifications__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_profile_profile__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -672,15 +699,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen, translateService) {
+    function MyApp(platform, statusBar, splashScreen, translateService, keyboard) {
         // this.initializeApp();
+        var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
         this.translateService = translateService;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */];
+        this.keyboard = keyboard;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */];
         platform.ready().then(function () {
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                console.log("window.cordova && window.cordova.plugins.Keyboard");
+                // This requires installation of https://github.com/driftyco/ionic-plugin-keyboard
+                // and can only affect native compiled Ionic2 apps (not webserved).
+                cordova.plugins.Keyboard.disableScroll(true);
+            }
+            _this.keyboard.disableScroll(true);
             statusBar.styleDefault();
             splashScreen.hide();
             translateService.setDefaultLang('en');
@@ -688,9 +725,9 @@ var MyApp = (function () {
         });
         // used for an example of ngFor and navigation
         this.pages = [
-            { icon: 'contacts', title: 'My Children', component: __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */] },
-            { icon: 'notifications', title: 'Notifications', component: __WEBPACK_IMPORTED_MODULE_6__pages_notifications_notifications__["a" /* NotificationsPage */] },
-            { icon: 'person', title: 'Profile', component: __WEBPACK_IMPORTED_MODULE_7__pages_profile_profile__["a" /* ProfilePage */] }
+            { icon: 'contacts', title: 'My Children', component: __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */] },
+            { icon: 'notifications', title: 'Notifications', component: __WEBPACK_IMPORTED_MODULE_7__pages_notifications_notifications__["a" /* NotificationsPage */] },
+            { icon: 'person', title: 'Profile', component: __WEBPACK_IMPORTED_MODULE_8__pages_profile_profile__["a" /* ProfilePage */] }
         ];
     }
     // initializeApp() {
@@ -701,7 +738,7 @@ var MyApp = (function () {
         this.nav.setRoot(page.component);
     };
     MyApp.prototype.userLogout = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_8__pages_login_login__["a" /* LoginPage */]);
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_9__pages_login_login__["a" /* LoginPage */]);
     };
     return MyApp;
 }());
@@ -710,10 +747,10 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar style="min-height: 150px">\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        <ion-icon name={{p.icon}}></ion-icon> {{p.title}}\n      </button>\n      <button menuClose ion-item (click)="userLogout()">\n        <ion-icon name="log-out"></ion-icon> Logout\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/app/app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar style="min-height: 150px">\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        <ion-icon name={{p.icon}}></ion-icon> {{p.title}}\n      </button>\n      <button menuClose ion-item (click)="userLogout()">\n        <ion-icon name="log-out"></ion-icon> Logout\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-        __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */]])
+        __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */]])
 ], MyApp);
 
 //# sourceMappingURL=app.component.js.map
@@ -768,7 +805,7 @@ var LoginPage = (function () {
 }());
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/heba/src/pages/login/login.html"*/'<!-- <ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>Login</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="National ID" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> Login</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> Don\'t have account</button>\n</ion-content> -->\n\n<ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>{{ \'PAGES.login\' | translate }}</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.nationalID\' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="password" placeholder="{{ \'FORM.password\' | translate }}" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.login\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> {{ \'BUTTONS.dontHaveAccount\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/heba/src/pages/login/login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/'<!-- <ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>Login</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="National ID" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> Login</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> Don\'t have account</button>\n</ion-content> -->\n\n<ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>{{ \'PAGES.login\' | translate }}</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.nationalID\' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="password" placeholder="{{ \'FORM.password\' | translate }}" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.login\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> {{ \'BUTTONS.dontHaveAccount\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], LoginPage);
@@ -777,5 +814,5 @@ LoginPage = __decorate([
 
 /***/ })
 
-},[222]);
+},[223]);
 //# sourceMappingURL=main.js.map

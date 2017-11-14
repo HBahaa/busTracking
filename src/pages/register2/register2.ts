@@ -16,7 +16,7 @@ export class Register2Page {
 
   address: any;
   location: any;
-  username: string;
+  // username: string;
   email   : string;
   phone   : Number;
   password: string;
@@ -24,10 +24,6 @@ export class Register2Page {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.address = this.navParams.get('param1');
     this.location = this.navParams.get('param2');
-  }
-
-
-  ionViewDidLoad(){
   }
   
   RegisterFN() {

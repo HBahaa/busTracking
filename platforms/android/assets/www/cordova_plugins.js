@@ -47,15 +47,6 @@ module.exports = [
         ]
     },
     {
-        "id": "ionic-plugin-keyboard.keyboard",
-        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-        "pluginId": "ionic-plugin-keyboard",
-        "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
-    },
-    {
         "id": "cordova-plugin-googlemaps.BaseClass",
         "file": "plugins/cordova-plugin-googlemaps/www/BaseClass.js",
         "pluginId": "cordova-plugin-googlemaps",
@@ -224,6 +215,15 @@ module.exports = [
         "clobbers": [
             "plugin.google.maps"
         ]
+    },
+    {
+        "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+        "pluginId": "ionic-plugin-keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -236,8 +236,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.2.3",
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-sqlite-storage": "2.1.1",
-    "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-googlemaps": "2.1.1"
+    "cordova-plugin-googlemaps": "2.1.1",
+    "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA
 });

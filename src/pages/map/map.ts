@@ -15,9 +15,10 @@ export class MapPage {
     map: GoogleMap;
     lat: any;
     lng: any;
-    locatin: any;
+    location: any;
     address: any;
-    geo: Geolocation;
+    searchQuery: any;
+
  
     constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps) {
         platform.ready().then(() => {
@@ -43,32 +44,30 @@ loadMap() {
     this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
         console.log('Map is ready!');
         this.map.addEventListener(GoogleMapsEvent.MAP_CLICK).subscribe((data)=>{
-        	console.log("map clicked = ", JSON.stringify(data) )
+
           this.lat = data[0]['lat'];
           this.lng = data[0]['lng'];
 
           this.getAddress(this.lat, this.lng);
+          this.location = {'lat': this.lat, 'lng': this.lng}
 
-          this.locatin = {'lat': this.lat, 'lng': this.lng}
         })
 
         this.map.getMyLocation().then((location)=>{
+
           this.lat = location['latLng']['lat'];
           this.lng = location['latLng']['lng'];
 
           this.getAddress(this.lat, this.lng);
+          this.location = {'lat': this.lat, 'lng': this.lng}
 
-          this.locatin = {'lat': this.lat, 'lng': this.lng}
-        	console.log("your location", JSON.stringify(location.latLng))
         })
 
         this.map.setMyLocationEnabled(true);
 
-        this.map.addEventListener(GoogleMapsEvent.MY_LOCATION_BUTTON_CLICK).subscribe(()=>{
-        	console.log("my location button click")
-        })
-
-        
+        // this.map.addEventListener(GoogleMapsEvent.MY_LOCATION_BUTTON_CLICK).subscribe(()=>{
+        // 	console.log("my location button click")
+        // }) 
 
     });
 
@@ -140,7 +139,7 @@ loadMap() {
       if(status == google.maps.GeocoderStatus.OK) {            // if geocode success
         
         this.address = results[0].formatted_address; 
-        alert("from" + this.address);          // if address found, pass to processing function
+        // alert("from" + this.address);          // if address found, pass to processing function
       
       } else {
         alert("Geocode failure: " + status);                // alert any other error(s)
@@ -150,8 +149,41 @@ loadMap() {
   }
 
 
+  codeAddress() {
+    // console.log(ev.target.value);
+
+    if (this.searchQuery != '') {
+      var geocoder  = new google.maps.Geocoder();              // create a geocoder object
+
+      geocoder.geocode( { 'address': this.searchQuery},(results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+
+          this.map.clear().then(()=>{
+            this.map.addMarker({
+              title: this.searchQuery,
+              icon: 'red',
+              animation: 'DROP',
+              position: results[0].geometry.location 
+            })
+
+            this.address = this.searchQuery;
+            this.location = results[0].geometry.location;
+
+            this.searchQuery = '';
+
+          }).catch(()=>{
+            console.log("clear map")
+          })
+
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+  }
+
   goToRegister(){
-    this.navCtrl.setRoot(Register2Page, {'param1': this.address, 'param2': this.locatin})
+    this.navCtrl.setRoot(Register2Page, {'param1': this.address, 'param2': this.location})
   }
 
 }
