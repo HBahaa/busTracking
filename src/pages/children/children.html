@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Children</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="std">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/1.png">
+      </ion-avatar>
+        <ion-row>
+          <ion-col col-4><span>Name:</span></ion-col><ion-col col-8><p>Heba</p></ion-col>
+          <ion-col col-4><span>Status:</span></ion-col><ion-col col-8><p>in bus</p></ion-col>
+
+        </ion-row>
+        <button ion-button color="mainColor" (click)="childDetails()" >details</button>
+    </ion-item>
+  </ion-card>
+</ion-content>

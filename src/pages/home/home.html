@@ -1,0 +1,19 @@
+<ion-content padding class="home-content">
+	<!-- <img src="assets/imgs/logo.png" class="logo"> -->
+	<h2>{{ 'HOME_PAGE.title' | translate }}</h2>
+
+	<!-- Segment in content -->
+<!-- 	<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)" style="margin-bottom: 10px; flex:initial">
+		<ion-segment-button value="en">
+			{{ 'BUTTONS.btn_eng' | translate }}
+		</ion-segment-button>
+		<ion-segment-button value="ar">
+			{{ 'BUTTONS.btn_ar' | translate }}
+		</ion-segment-button>
+	</ion-segment>
+ -->
+
+    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.login' | translate }}</button>
+    <h3>{{ 'HOME_PAGE.or' | translate }}</h3>
+    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.register' | translate }}</button>
+</ion-content>

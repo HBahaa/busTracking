@@ -1,0 +1,38 @@
+{
+	"BUTTONS" : {
+		"btn_eng" : "English",
+		"btn_ar" : "Arabic",
+		"alreadyHaveAccount": "Already Have Account",
+		"dontHaveAccount" 	: "Don't Have Account"
+	},
+	"PAGES": {
+		"login"		   : "Login",
+		"register1"	   : "Register1",
+		"register2"	   : "Register2",
+		"children" 	   : "My Children",
+		"notifications": "Notifications"
+	},
+	"FORM":{
+		"name" 	  	 : "Name",
+		"email"	   	 : "Email",
+		"password" 	 : "Password",
+		"address" 	 : "Address",
+		"secertKey"	 : "Secert Key",
+		"nationalID" : "National ID",
+		"send"		 : "Send",
+		"login"		 : "Login",
+		"phone"		 : "Phone Number"
+	},
+	"CHILDREN_PAGE": {
+		"childName"   : "Name",
+		"childStatus" : "Status",
+		"detailsBTN"  : "Details"
+	},
+	"HOME_PAGE":  	 {
+		"title"		: "Your Bus School",
+		"or" 		: "OR",
+		"login" 	: "Login",
+		"register"	: "Register"
+	}
+
+}

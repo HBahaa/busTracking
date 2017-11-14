@@ -1,0 +1,49 @@
+<ion-content class="register1-content">
+    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">
+      <ion-row>
+        <ion-col>
+          <h3>Register</h3>
+          <ion-list inset>
+            <ion-item>
+              <ion-label> <ion-icon name="person"></ion-icon></ion-label>
+              <ion-input type="text" placeholder="National ID" name="nationalID" [(ngModel)]="nationalID" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label> <ion-icon name="key"></ion-icon></ion-label>
+              <ion-input type="text" placeholder="Secert Key" name="password" [(ngModel)]="secertKey" required></ion-input>
+            </ion-item>
+
+            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">
+              <ion-icon name="log-in"></ion-icon> Send</button>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </form>
+    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>Already have account</button>
+</ion-content>
+
+<!-- <ion-content class="register1-content">
+    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">
+      <ion-row>
+        <ion-col>
+          <h3>Register</h3>
+          <ion-list inset>
+            <ion-item>
+              <ion-label> <ion-icon name="person"></ion-icon></ion-label>
+              <ion-input type="text" placeholder="{{ 'FORM.nationalID' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label> <ion-icon name="key"></ion-icon></ion-label>
+              <ion-input type="text" placeholder="{{ 'FORM.secertKey' | translate }}" name="password" [(ngModel)]="secertKey" required></ion-input>
+            </ion-item>
+
+            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">
+              <ion-icon name="log-in"></ion-icon> {{ 'FORM.send' | translate }}</button>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </form>
+    <button ion-button color="light" (click)="alreadyHaveAccount()" clear> {{ 'BUTTONS.alreadyHaveAccount' | translate }}</button>
+</ion-content> -->
