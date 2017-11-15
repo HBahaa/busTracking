@@ -5,13 +5,6 @@
 		"alreadyHaveAccount": "Already Have Account",
 		"dontHaveAccount" 	: "Don't Have Account"
 	},
-	"PAGES": {
-		"login"		   : "Login",
-		"register1"	   : "Register1",
-		"register2"	   : "Register2",
-		"children" 	   : "My Children",
-		"notifications": "Notifications"
-	},
 	"FORM":{
 		"name" 	  	 : "Name",
 		"email"	   	 : "Email",
@@ -21,18 +14,37 @@
 		"nationalID" : "National ID",
 		"send"		 : "Send",
 		"login"		 : "Login",
+		"register"	 : "Register",
 		"phone"		 : "Phone Number"
 	},
 	"CHILDREN_PAGE": {
-		"childName"   : "Name",
-		"childStatus" : "Status",
-		"detailsBTN"  : "Details"
+		"title"		: "My Children",
+		"name"  	: "Name",
+		"status" 	: "Status",
+		"details" 	: "Details"
 	},
 	"HOME_PAGE":  	 {
 		"title"		: "Your Bus School",
 		"or" 		: "OR",
 		"login" 	: "Login",
 		"register"	: "Register"
-	}	
+	},
+	"REGISTER1_PAGE"	: {
+		"title"		: "Registration"
+	},
+	"REGISTER2_PAGE"	: {
+		"title"		: "Registration"
+	},
+	"DETAILS_PAGE" : {
+		"title"			: "Details",
+		"childID"		: "Child ID",
+		"status"		: "Status",
+		"busNumber"		: "Bus Number",
+		"driverName"	: "Driver Name",
+		"driverPhone"	: "Driver Phone"
+	},
+	"NOTIFICATION_PAGE" : {
+		"title" : "Notification"
+	}
 
 }

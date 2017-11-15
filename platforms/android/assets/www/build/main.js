@@ -31,7 +31,7 @@ var ChildrenPage = (function () {
 }());
 ChildrenPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>My Children</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n        <ion-row>\n          <ion-col col-4><span>Name:</span></ion-col><ion-col col-8><p>Heba</p></ion-col>\n          <ion-col col-4><span>Status:</span></ion-col><ion-col col-8><p>in bus</p></ion-col>\n\n        </ion-row>\n        <button ion-button color="mainColor" (click)="childDetails()" >details</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/
+        selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'CHILDREN_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n      <ion-row>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.name\' | translate }}:</span></ion-col><ion-col col-8><p>Heba</p></ion-col>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.status\' | translate }}:</span></ion-col><ion-col col-8><p>in bus</p></ion-col>\n\n      </ion-row>\n      <button ion-button color="mainColor" (click)="childDetails()" >{{ \'CHILDREN_PAGE.details\' | translate }}</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
 ], ChildrenPage);
@@ -85,7 +85,7 @@ var Register1Page = (function () {
 }());
 Register1Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-register1',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register1/register1.html"*/'<ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>Register</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="National ID" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="Secert Key" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> Send</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>Already have account</button>\n</ion-content>\n\n<!-- <ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>Register</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.nationalID\' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.secertKey\' | translate }}" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.send\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear> {{ \'BUTTONS.alreadyHaveAccount\' | translate }}</button>\n</ion-content> -->'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register1/register1.html"*/
+        selector: 'page-register1',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register1/register1.html"*/'<ion-content class="register1-content">\n    <form #loginForm="ngForm" (ngSubmit)="authenticationCheck()">\n      <ion-row>\n        <ion-col>\n          <h3>{{ \'REGISTER1_PAGE.title\' | translate }}</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.nationalID\' | translate }}" name="nationalID" [(ngModel)]="nationalID" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="key"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.secertKey\' | translate }}" name="password" [(ngModel)]="secertKey" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="mainColor" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.send\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>{{ \'BUTTONS.alreadyHaveAccount\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register1/register1.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], Register1Page);
@@ -184,7 +184,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/'\n\n<ion-content padding class="home-content">\n	<h2>{{ \'HOME_PAGE.title\' | translate }}</h2>\n\n    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.login\' | translate }}</button>\n    <h3>{{ \'HOME_PAGE.or\' | translate }}</h3>\n    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.register\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/'<ion-content padding class="home-content">\n	<h2>{{ \'HOME_PAGE.title\' | translate }}</h2>\n\n    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.login\' | translate }}</button>\n    <h3>{{ \'HOME_PAGE.or\' | translate }}</h3>\n    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.register\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
 ], HomePage);
@@ -251,13 +251,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MapPage = (function () {
-    function MapPage(navCtrl, platform, googleMaps) {
+    function MapPage(navCtrl, platform, googleMaps, toastCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.platform = platform;
         this.googleMaps = googleMaps;
+        this.toastCtrl = toastCtrl;
         platform.ready().then(function () {
             _this.loadMap();
+            _this.presentToast();
         });
     }
     MapPage.prototype.loadMap = function () {
@@ -284,6 +286,28 @@ var MapPage = (function () {
             _this.map.getMyLocation().then(function (location) {
                 _this.lat = location['latLng']['lat'];
                 _this.lng = location['latLng']['lng'];
+                var mapOption = {
+                    camera: {
+                        target: {
+                            lat: _this.lat,
+                            lng: _this.lng
+                        },
+                        zoom: 10,
+                        tilt: 30
+                    }
+                };
+                _this.map.setOptions(mapOption);
+                _this.map.setMyLocationEnabled(true);
+                // Now you can use all methods safely.
+                _this.map.addMarker({
+                    title: "your location",
+                    icon: 'red',
+                    animation: 'DROP',
+                    position: {
+                        lat: _this.lat,
+                        lng: _this.lng
+                    }
+                });
                 _this.getAddress(_this.lat, _this.lng);
                 _this.location = { 'lat': _this.lat, 'lng': _this.lng };
             });
@@ -368,6 +392,14 @@ var MapPage = (function () {
                         });
                         _this.address = _this.searchQuery;
                         _this.location = results[0].geometry.location;
+                        var mapOption = {
+                            camera: {
+                                target: _this.location,
+                                zoom: 10,
+                                tilt: 30
+                            }
+                        };
+                        _this.map.setOptions(mapOption);
                         _this.searchQuery = '';
                     }).catch(function () {
                         console.log("clear map");
@@ -379,6 +411,17 @@ var MapPage = (function () {
             });
         }
     };
+    MapPage.prototype.presentToast = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Select your location then click Next',
+            duration: 5000,
+            position: 'top'
+        });
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
+    };
     MapPage.prototype.goToRegister = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */], { 'param1': this.address, 'param2': this.location });
     };
@@ -388,7 +431,7 @@ MapPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'map-page',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/map/map.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>Select your home</ion-title>\n    <ion-buttons end>\n      <button ion-button color="light" (click)="goToRegister()">\n        Next\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n \n<ion-content>\n  <div id="over_map">\n    <!-- <ion-item>\n      \n      <ion-input type="text" placeholder="enter your address" name="nationalID" [(ngModel)]="inpt" (keyup)="codeAddress()"></ion-input>\n      <ion-label><ion-icon name="search"></ion-icon></ion-label>\n    </ion-item> -->\n    <!-- (keyup)="updateList($event)" -->\n\n    <ion-searchbar primary [(ngModel)]="searchQuery" show-cancel="true" placeholder="Search"></ion-searchbar>\n    <button ion-button icon-only block (click)="codeAddress()"><ion-icon name="redo"></ion-icon></button>\n  </div>\n  <div id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/map/map.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */]])
 ], MapPage);
 
 //# sourceMappingURL=map.js.map
@@ -432,7 +475,7 @@ var Register2Page = (function () {
 }());
 Register2Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-register2',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register2/register2.html"*/'<ion-content class="login-content">\n  <form #regiseterForm="ngForm" (ngSubmit)="RegisterFN()">\n    <ion-row>\n      <ion-col>\n        <h3>Registration</h3>\n        <ion-list inset>\n          <!-- <ion-item>\n            <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="username" required></ion-input>\n          </ion-item> -->\n          <ion-item>\n            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>\n            <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="pin"></ion-icon></ion-label>\n            <ion-input type="text" name="address" [(ngModel)]="address" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Phone Number" name="phone" [(ngModel)]="phone" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n            <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>\n          </ion-item>\n          <button ion-button type="submit" color="mainColor" block round [disabled]="!regiseterForm.form.valid">\n            <ion-icon name="log-in"></ion-icon> Register\n          </button>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register2/register2.html"*/
+        selector: 'page-register2',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register2/register2.html"*/'<ion-content class="login-content">\n  <form #regiseterForm="ngForm" (ngSubmit)="RegisterFN()">\n    <ion-row> \n      <ion-col>\n        <h3>{{ \'REGISTER2_PAGE.title\' | translate }}</h3>\n        <ion-list inset>\n          <!-- <ion-item>\n            <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="username" required></ion-input>\n          </ion-item> -->\n          <ion-item>\n            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>\n            <ion-input type="email" placeholder="{{ \'FORM.email\' | translate }}" name="email" [(ngModel)]="email" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="pin"></ion-icon></ion-label>\n            <ion-input type="text" name="address" [(ngModel)]="address" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>\n            <ion-input type="text" placeholder="{{ \'FORM.phone\' | translate }}" name="phone" [(ngModel)]="phone" required></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n            <ion-input type="password" placeholder="{{ \'FORM.password\' | translate }}" name="password" [(ngModel)]="password" required></ion-input>\n          </ion-item>\n          <button ion-button type="submit" color="mainColor" block round [disabled]="!regiseterForm.form.valid">\n            <ion-icon name="log-in"></ion-icon> {{ \'FORM.register\' | translate }}\n          </button>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/register2/register2.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
 ], Register2Page);
@@ -483,7 +526,7 @@ var NotificationsPage = NotificationsPage_1 = (function () {
 }());
 NotificationsPage = NotificationsPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-notifications',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/notifications/notifications.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">\n      <p>{{item.date}}</p>\n      <h2>{{item.title}}</h2>\n      <h3>{{item.data}}</h3>\n    </button>\n\n</ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/notifications/notifications.html"*/
+        selector: 'page-notifications',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/notifications/notifications.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'PAGE_NOTIFICATION.TITLE\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">\n      <p>{{item.date}}</p>\n      <h2>{{item.title}}</h2>\n      <h3>{{item.data}}</h3>\n    </button>\n\n</ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/notifications/notifications.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
 ], NotificationsPage);

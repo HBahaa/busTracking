@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, ToastController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions,Marker } from '@ionic-native/google-maps';
 
 import { Register2Page } from '../register2/register2';
@@ -20,9 +20,10 @@ export class MapPage {
     searchQuery: any;
 
  
-    constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps) {
+    constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps, private toastCtrl: ToastController) {
         platform.ready().then(() => {
             this.loadMap();
+            this.presentToast();
         });
     }
  
@@ -57,6 +58,30 @@ loadMap() {
 
           this.lat = location['latLng']['lat'];
           this.lng = location['latLng']['lng'];
+          let mapOption: GoogleMapOptions = {
+              camera: {
+                target: {
+                  lat: this.lat,
+                  lng: this.lng
+                },
+                zoom: 10,
+                tilt: 30
+              }
+            };
+
+          this.map.setOptions(mapOption);
+          this.map.setMyLocationEnabled(true);
+
+          // Now you can use all methods safely.
+          this.map.addMarker({
+            title: "your location",
+            icon: 'red',
+            animation: 'DROP',
+            position: {
+              lat: this.lat,
+              lng: this.lng
+            }
+          })
 
           this.getAddress(this.lat, this.lng);
           this.location = {'lat': this.lat, 'lng': this.lng}
@@ -169,6 +194,16 @@ loadMap() {
             this.address = this.searchQuery;
             this.location = results[0].geometry.location;
 
+            let mapOption: GoogleMapOptions = {
+              camera: {
+                target: this.location,
+                zoom: 10,
+                tilt: 30
+              }
+            };
+
+            this.map.setOptions(mapOption);
+
             this.searchQuery = '';
 
           }).catch(()=>{
@@ -180,6 +215,20 @@ loadMap() {
         }
       });
     }
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Select your location then click Next',
+      duration: 5000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
   goToRegister(){
