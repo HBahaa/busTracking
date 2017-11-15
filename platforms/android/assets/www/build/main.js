@@ -184,7 +184,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/'<ion-content padding class="home-content">\n	<!-- <img src="assets/imgs/logo.png" class="logo"> -->\n	<h2>{{ \'HOME_PAGE.title\' | translate }}</h2>\n\n	<!-- Segment in content -->\n	<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)" style="margin-bottom: 10px; flex:initial; display: none">\n		<ion-segment-button value="en">\n			{{ \'BUTTONS.btn_eng\' | translate }}\n		</ion-segment-button>\n		<ion-segment-button value="ar">\n			{{ \'BUTTONS.btn_ar\' | translate }}\n		</ion-segment-button>\n	</ion-segment>\n\n\n    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.login\' | translate }}</button>\n    <h3>{{ \'HOME_PAGE.or\' | translate }}</h3>\n    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.register\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/'\n\n<ion-content padding class="home-content">\n	<h2>{{ \'HOME_PAGE.title\' | translate }}</h2>\n\n    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.login\' | translate }}</button>\n    <h3>{{ \'HOME_PAGE.or\' | translate }}</h3>\n    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ \'HOME_PAGE.register\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
 ], HomePage);
@@ -601,7 +601,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 function HttpLoaderFactory(http) {
-    return new __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http);
+    return new __WEBPACK_IMPORTED_MODULE_12__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, 'assets/i18n/', '.json');
 }
 var AppModule = (function () {
     function AppModule() {

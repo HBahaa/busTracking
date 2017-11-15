@@ -8,25 +8,25 @@
     },
     "installed_plugins": {
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.heba.busTracking"
+            "PACKAGE_NAME": "io.ionic.starter"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.heba.busTracking"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.heba.busTracking"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.heba.busTracking"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.heba.busTracking"
-        },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.heba.busTracking"
+            "PACKAGE_NAME": "io.ionic.starter"
         },
         "cordova-plugin-googlemaps": {
             "API_KEY_FOR_ANDROID": "AIzaSyCu56D4qgNvIbI0DOHf-a5VSTMadDVPOhA",
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-sqlite-storage": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
         "ionic-plugin-keyboard": {
@@ -35,7 +35,7 @@
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.heba.busTracking"
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     }
 }
