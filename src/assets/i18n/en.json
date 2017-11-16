@@ -29,6 +29,9 @@
 		"login" 	: "Login",
 		"register"	: "Register"
 	},
+	"LOGIN_PAGE"	: {
+		"title"		: "Login"
+	},
 	"REGISTER1_PAGE"	: {
 		"title"		: "Registration"
 	},

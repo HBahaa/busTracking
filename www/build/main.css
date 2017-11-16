@@ -28163,6 +28163,7 @@ page-login .login-content ion-col ion-label {
 }
 
 page-login .login-content .scroll-content {
+  padding-bottom: 0 !important;
   text-align: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -28290,6 +28291,7 @@ page-register1 .register1-content ion-col ion-label {
 }
 
 page-register1 .register1-content .scroll-content {
+  padding-bottom: 0 !important;
   text-align: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;

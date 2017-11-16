@@ -26,9 +26,9 @@ export class NotificationsPage {
 
   }
 
-  notificationDetails(item) {
-    this.navCtrl.push(NotificationsPage, {
-      item: item
-    });
-  }
+  // notificationDetails(item) {
+  //   this.navCtrl.push(NotificationsPage, {
+  //     item: item
+  //   });
+  // }
 }

@@ -15,12 +15,23 @@
 	        	<!-- <ion-col col-5><h2>Child Name:</h2></ion-col><ion-col col-7><h2>heba</h2></ion-col> -->
 	        	<ion-col col-12><br /></ion-col>
 	        	<ion-col col-5><h2>Child ID:</h2></ion-col><ion-col col-7><h2>1111</h2></ion-col>
-	        	<ion-col col-5><h2>Status:</h2></ion-col><ion-col col-7><h2>in bus</h2></ion-col>
+	        	<ion-col col-5><h2>Child Status:</h2></ion-col><ion-col col-7><h2>child status</h2></ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 	        	<ion-col col-5><h2>Bus Number:</h2></ion-col><ion-col col-7><h2>1234</h2></ion-col>
+	        	<ion-col col-5><h2>Bus Status:</h2></ion-col><ion-col col-7><h2>bus status</h2></ion-col>
+	        	<ion-col col-12><hr /></ion-col>
 	        	<ion-col col-5><h2>Driver Name:</h2></ion-col><ion-col col-7><h2>driver1</h2></ion-col>
 	        	<ion-col col-5><h2>Driver Phone:</h2></ion-col><ion-col col-7><h2>11111</h2></ion-col>
 	        </ion-row>
 		</ion-card-content>
 	</ion-card>
+
+	<ion-list>
+		<h2>Notifications</h2>
+	    <button ion-item *ngFor="let item of items">
+	      <p>{{item.date}}</p>
+	      <h2>{{item.title}}</h2>
+	      <h3>{{item.data}}</h3>
+	    </button>
+	</ion-list>
 </ion-content>

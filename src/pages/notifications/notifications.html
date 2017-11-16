@@ -3,14 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{ 'PAGE_NOTIFICATION.TITLE' | translate }}</ion-title>
+    <ion-title>{{ 'NOTIFICATION_PAGE.title' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">
+    <button ion-item *ngFor="let item of items">
       <p>{{item.date}}</p>
       <h2>{{item.title}}</h2>
       <h3>{{item.data}}</h3>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, ToastController } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions,Marker } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 
 import { Register2Page } from '../register2/register2';
 
@@ -23,7 +23,7 @@ export class MapPage {
     constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps, private toastCtrl: ToastController) {
         platform.ready().then(() => {
             this.loadMap();
-            this.presentToast();
+            this.presentToast('Select your location => you can click on map to select you home or from search box  then click Next', 8000, 'top');
         });
     }
  
@@ -31,10 +31,6 @@ loadMap() {
 
   let mapOptions: GoogleMapOptions = {
     camera: {
-      // target: {
-      //   lat: 43.0741904,
-      //   lng: -89.3809802
-      // },
       zoom: 18,
       tilt: 15
     }
@@ -44,14 +40,44 @@ loadMap() {
 
     this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
         console.log('Map is ready!');
+
         this.map.addEventListener(GoogleMapsEvent.MAP_CLICK).subscribe((data)=>{
 
-          this.lat = data[0]['lat'];
-          this.lng = data[0]['lng'];
+          this.map.clear().then(()=>{
+            this.lat = data[0]['lat'];
+            this.lng = data[0]['lng'];
 
-          this.getAddress(this.lat, this.lng);
-          this.location = {'lat': this.lat, 'lng': this.lng}
+            let mapOption: GoogleMapOptions = {
+                camera: {
+                  target: {
+                    lat: this.lat,
+                    lng: this.lng
+                  },
+                  zoom: 15,
+                  tilt: 30
+                }
+              };
 
+            this.map.setOptions(mapOption);
+            this.map.setMyLocationEnabled(true);
+
+            // Now you can use all methods safely.
+            this.map.addMarker({
+              title: "your location",
+              icon: 'red',
+              animation: 'DROP',
+              position: {
+                lat: this.lat,
+                lng: this.lng
+              }
+            })
+
+            this.getAddress(this.lat, this.lng);
+            this.location = {'lat': this.lat, 'lng': this.lng}
+
+          });
+
+          
         })
 
         this.map.getMyLocation().then((location)=>{
@@ -64,7 +90,7 @@ loadMap() {
                   lat: this.lat,
                   lng: this.lng
                 },
-                zoom: 10,
+                zoom: 15,
                 tilt: 30
               }
             };
@@ -175,9 +201,8 @@ loadMap() {
 
 
   codeAddress() {
-    // console.log(ev.target.value);
 
-    if (this.searchQuery != '') {
+    if (this.searchQuery != undefined) {
       var geocoder  = new google.maps.Geocoder();              // create a geocoder object
 
       geocoder.geocode( { 'address': this.searchQuery},(results, status) => {
@@ -215,13 +240,18 @@ loadMap() {
         }
       });
     }
+    else if (this.searchQuery == undefined) {
+
+      console.log("this.searchQuery", this.searchQuery);
+      this.presentToast('Please enter address in search box or click Next', 4000, "bottom");
+    }
   }
 
-  presentToast() {
+  presentToast(msg, t, pos) {
     let toast = this.toastCtrl.create({
-      message: 'Select your location then click Next',
-      duration: 5000,
-      position: 'top'
+      message: msg,
+      duration: t,
+      position: pos
     });
 
     toast.onDidDismiss(() => {

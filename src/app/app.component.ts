@@ -5,12 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ChildrenPage } from '../pages/children/children';
 import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
-// import { Register2Page } from '../pages/register2/register2';
-// import { MapPage } from '../pages/map/map';
+
 
 declare var cordova:any;
 declare var window:any;
@@ -51,7 +51,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { icon: 'contacts',title: 'My Children', component: HomePage },
+      { icon: 'contacts',title: 'My Children', component: ChildrenPage },
       { icon: 'notifications',title: 'Notifications', component: NotificationsPage },
       { icon: 'person',title: 'Profile', component: ProfilePage }
     ];
@@ -65,10 +65,12 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+
     this.nav.setRoot(page.component);
   }
 
   userLogout(){
+    console.log("logout")
     this.nav.setRoot(LoginPage);
   }
 }
