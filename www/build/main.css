@@ -28141,7 +28141,6 @@ page-home .home-content .scroll-content {
   flex-direction: column;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -28183,7 +28182,6 @@ page-login .login-content .scroll-content {
   flex-direction: column;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -28311,7 +28309,6 @@ page-register1 .register1-content .scroll-content {
   flex-direction: column;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -28418,7 +28415,6 @@ page-register2 .login-content .scroll-content {
   flex-direction: column;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.7);
 }
 

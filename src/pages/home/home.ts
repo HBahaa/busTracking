@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, MenuController, Platform } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 import 'rxjs/add/operator/map';
@@ -13,11 +13,12 @@ import { Register1Page } from '../register1/register1';
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private platform: Platform, private translateService: TranslateService) {
+  constructor(public navCtrl: NavController, private platform: Platform, private translateService: TranslateService, private menuCtrl: MenuController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+   ionViewDidEnter() {
+    console.log('ionViewDidEnter LoginPage');
+    this.menuCtrl.enable(false);
   }
 
   goToLogin() {

@@ -58,9 +58,6 @@ export class MyApp {
 
   }
 
-  // initializeApp() {
-    
-  // }
 
   openPage(page) {
     // Reset the content nav to have just this page

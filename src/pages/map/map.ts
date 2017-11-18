@@ -23,7 +23,7 @@ export class MapPage {
     constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps, private toastCtrl: ToastController) {
         platform.ready().then(() => {
             this.loadMap();
-            this.presentToast('Select your location => you can click on map to select you home or from search box  then click Next', 8000, 'top');
+            this.presentToast('Select your location, you can click on map to select you home or from search box  then click Next', 5000, 'top');
         });
     }
  

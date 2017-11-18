@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 
@@ -17,18 +17,21 @@ export class LoginPage {
   password: string;
 
 
-  constructor(public navCtrl: NavController, public http: Http, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: Http, public storage: Storage, private menuCtrl: MenuController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter LoginPage');
+    this.menuCtrl.enable(false);
   }
 
   login() {
+    this.menuCtrl.enable(true);
     this.navCtrl.setRoot(ChildrenPage);
   }
 
   createAccount(){
+    this.menuCtrl.enable(false);
     this.navCtrl.setRoot(Register1Page);
   }
 

@@ -15,7 +15,8 @@
 		"send"		 : "Send",
 		"login"		 : "Login",
 		"register"	 : "Register",
-		"phone"		 : "Phone Number"
+		"phone"		 : "Phone Number",
+		"locateMe"	 : "Change My Address"
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",
