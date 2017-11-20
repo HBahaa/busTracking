@@ -25,11 +25,17 @@ page-register2 {
         // border-radius: 5px;
         background-color: rgba(0, 0, 0, 0.7);
      }
-     .list-md .item-block .item-inner {
+     .item-block .item-inner {
         border-bottom: 0px solid #dedede;
      }
-     .list-md .item-block .item-inner:focus {
+     .item-block .item-inner:focus {
         border-bottom: 0px solid #dedede;
+     }
+     .error-container{
+      color: #f00;
+      margin-bottom: 5px;
+      text-align: left;
+      padding-left: 30px;
      }
      ion-item.item.item-block.item-input{
         border-bottom-width: 0px;

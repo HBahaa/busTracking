@@ -28288,6 +28288,13 @@ page-register1 .register1-content ion-col ion-label {
   padding-top: 0px !important;
 }
 
+page-register1 .register1-content .error-container {
+  color: #f00;
+  margin-bottom: 5px;
+  text-align: left;
+  padding-left: 30px;
+}
+
 page-register1 .register1-content .scroll-content {
   padding-bottom: 0 !important;
   text-align: center;
@@ -28418,12 +28425,19 @@ page-register2 .login-content .scroll-content {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-page-register2 .login-content .list-md .item-block .item-inner {
+page-register2 .login-content .item-block .item-inner {
   border-bottom: 0px solid #dedede;
 }
 
-page-register2 .login-content .list-md .item-block .item-inner:focus {
+page-register2 .login-content .item-block .item-inner:focus {
   border-bottom: 0px solid #dedede;
+}
+
+page-register2 .login-content .error-container {
+  color: #f00;
+  margin-bottom: 5px;
+  text-align: left;
+  padding-left: 30px;
 }
 
 page-register2 .login-content ion-item.item.item-block.item-input {

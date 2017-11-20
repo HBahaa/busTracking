@@ -11,12 +11,40 @@
 		"password" 	 : "Password",
 		"address" 	 : "Address",
 		"secertKey"	 : "Secert Key",
-		"nationalID" : "National ID",
+		"idNumber"	 : "ID Number",
 		"send"		 : "Send",
 		"login"		 : "Login",
 		"register"	 : "Register",
 		"phone"		 : "Phone Number",
 		"locateMe"	 : "Change My Address"
+	}, 
+	"ERROR_MESSAGES":{
+		"register1": {
+			"id":{
+				"required": "ID Number is required.",
+				"pattern" : "Please enter valid ID Number."
+			},
+			"skey": {
+				"required" : "Secert key is required.",
+				"min"      : "Please enter valid Secert key.",
+				"max"	   : "Please enter valid Secert key."
+			}
+		},
+		"register2" : {
+			"email": {
+				"required": "Email is required.",
+				"pattern" : "Please enter valid email."
+			},
+			"password": {
+				"required" : "Password is required.",
+				"minlength": "Password must be at least 5 characters long.",
+				"pattern"  : "Your password must contain at least one uppercase, one lowercase, and one number."
+			},
+			"mobile": {
+				"required": "Mobile no. is required",
+				"pattern" : "Please enter valid mobile number"
+			}
+		}
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",

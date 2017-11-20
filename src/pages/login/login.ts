@@ -13,15 +13,14 @@ import { Register1Page } from '../register1/register1';
 })
 
 export class LoginPage {
-  nationalID: string;
-  password: string;
+  id: any;
+  password: any;
 
 
   constructor(public navCtrl: NavController, public http: Http, public storage: Storage, private menuCtrl: MenuController) {
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidEnter LoginPage');
     this.menuCtrl.enable(false);
   }
 
