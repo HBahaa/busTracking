@@ -1,15 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ToastController, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 import { ChildrenPage } from '../pages/children/children';
 import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
+import { Register2Page } from '../pages/register2/register2';
+// import { DetailsPage } from '../pages/details/details';
 
 
 declare var cordova:any;
@@ -19,14 +22,18 @@ declare var window:any;
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = ChildrenPage;
+  isLoggedIn:boolean;
+  loader:any;
 
   pages: Array<{icon: string, title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    private translateService: TranslateService, private keyboard: Keyboard) {
+    private translateService: TranslateService, private keyboard: Keyboard,public toastCtrl:ToastController
+    ,public loadingCtrl: LoadingController, private storage: Storage) {
 
     // this.initializeApp();
 
@@ -46,6 +53,9 @@ export class MyApp {
 
       translateService.setDefaultLang('en');
       translateService.use('en');
+
+      // this.presentLoading();
+      // this.loadingPage();
                 
     });
 
@@ -67,7 +77,36 @@ export class MyApp {
   }
 
   userLogout(){
-    console.log("logout")
-    this.nav.setRoot(LoginPage);
+    console.log("logout");
+    this.storage.clear().then(()=>{
+      this.nav.setRoot(LoginPage);
+    }).catch(()=>{
+      console.log("error")
+    });
+  }
+
+  loadingPage(){
+    this.storage.ready().then(()=>{
+
+      this.storage.get("token").then((data)=>{
+        if(data != null){
+
+          console.log("userDta ", data)
+          this.rootPage = ChildrenPage;
+          this.loader.dismiss();
+
+        }else if(data == null){
+          this.loader.dismiss();
+          this.rootPage = HomePage;
+        }
+      })
+    })
+  }
+
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Authenticating..."
+    });
+    this.loader.present();
   }
 }

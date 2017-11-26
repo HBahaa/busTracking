@@ -8,6 +8,8 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from 'ionic-native';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -23,6 +25,8 @@ import { LoginPage } from '../pages/login/login';
 import { Register1Page } from '../pages/register1/register1';
 import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
+import { GetNotificationProvider } from '../providers/get-notification/get-notification';
+import { GetChildrenProvider } from '../providers/get-children/get-children';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -76,7 +80,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     Keyboard,
     Geolocation,
     GoogleMaps,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    LocalNotifications,
+    BackgroundMode,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GetNotificationProvider,
+    GetChildrenProvider
   ]
 })
 export class AppModule {}

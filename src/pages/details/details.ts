@@ -1,25 +1,47 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from 'ionic-native';
+import { Storage } from '@ionic/storage';
+import * as $ from 'jquery';
+import * as io from "socket.io-client";
 
 @Component({
   selector: 'page-details',
   templateUrl: 'details.html'
 })
 export class DetailsPage {
-	
-	items: Array<{title: string, data: string, date: string}>;
+	messages: any[] = [];
+	items: any[] = [];
+	childData: any;
+	tag: any;
+	lastMsg: any;
 
-	constructor(public navCtrl: NavController) {
+	constructor(public navCtrl: NavController, private navParams: NavParams, private storage: Storage, private platform: Platform) {
 
-		this.items = [];
-	    for (let i = 1; i < 11; i++) {
-	      this.items.push({
-	        title: 'Item ' + i,
-	        data: 'I\'ve had a pretty messed up day. If we just...',
-	        date: '22/08/2017'
-	      });
-	    }
+		platform.ready().then(() => {
 
+			this.tag = this.navParams.get("param1");
+
+			this.childData = this.navParams.get("param2");
+			console.log("childData", this.childData)
+
+
+			console.log("constructor");
+			this.storage.get(this.tag).then((messages)=>{
+				this.messages = messages
+				console.log(messages)
+			})
+
+		}).catch((error) => {
+			alert("error 1: "+ error);
+		});
+
+	}
+
+	ionViewDidLoad(){
+		console.log("ionViewDidLoad")
+		
 	}
 
 }
