@@ -559,13 +559,20 @@ var DetailsPage = (function () {
         this.messages = [];
         this.items = [];
         platform.ready().then(function () {
-            _this.childData = _this.navParams.get("param1");
-            _this.lastMsg = _this.navParams.get("param2");
+            _this.tag = _this.navParams.get("param1");
+            _this.childData = _this.navParams.get("param2");
+            console.log("childData", _this.childData);
+            console.log("constructor");
+            _this.storage.get(_this.tag).then(function (messages) {
+                _this.messages = messages;
+                console.log(messages);
+            });
         }).catch(function (error) {
             alert("error 1: " + error);
         });
     }
     DetailsPage.prototype.ionViewDidLoad = function () {
+        console.log("ionViewDidLoad");
     };
     return DetailsPage;
 }());
@@ -1051,7 +1058,7 @@ var ChildrenPage = (function () {
         this.items = [];
         platform.ready().then(function () {
             _this.storage.get("children").then(function (data) {
-                console.log("data", data);
+                console.log("data == ", data);
                 _this.children = data;
             }).catch(function (error) {
                 console.log("can't get children from storage");
@@ -1104,11 +1111,17 @@ var ChildrenPage = (function () {
     // 		console.log("errrrror")
     // 	});
     // }
-    ChildrenPage.prototype.childDetails = function (tag) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__details_details__["a" /* DetailsPage */], { 'param1': tag });
+    ChildrenPage.prototype.childDetails = function (tag, child) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__details_details__["a" /* DetailsPage */], { 'param1': tag, 'param2': child });
     };
     ChildrenPage.prototype.scheduleNotification = function () {
         __WEBPACK_IMPORTED_MODULE_3_ionic_native__["a" /* LocalNotifications */].schedule(this.items);
+    };
+    ChildrenPage.prototype.ionViewWillEnter = function () {
+        console.log("ionViewWillEnter");
+    };
+    ChildrenPage.prototype.ionViewWillLoad = function () {
+        console.log("ionViewWillLoad");
     };
     ChildrenPage.prototype.serverConnection = function () {
         var _this = this;
@@ -1348,10 +1361,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var LoginPage = (function () {
-    function LoginPage(navCtrl, storage, menuCtrl, getChildrenProvider, getNotificationProvider) {
+    function LoginPage(navCtrl, storage, menuCtrl, loadingCtrl, getChildrenProvider, getNotificationProvider) {
         this.navCtrl = navCtrl;
         this.storage = storage;
         this.menuCtrl = menuCtrl;
+        this.loadingCtrl = loadingCtrl;
         this.getChildrenProvider = getChildrenProvider;
         this.getNotificationProvider = getNotificationProvider;
     }
@@ -1360,6 +1374,7 @@ var LoginPage = (function () {
     };
     LoginPage.prototype.login = function () {
         var _this = this;
+        this.presentLoading();
         this.menuCtrl.enable(true);
         console.log("this.id", this.id);
         console.log("this.password", this.password);
@@ -1383,15 +1398,18 @@ var LoginPage = (function () {
                 _this.getChildrenProvider.getAllChildren(response.token).then(function (flag) {
                     _this.storage.set("token", response.token).then(function () {
                         _this.getNotificationProvider.getNotification().then(function (flag) {
+                            _this.loader.dismiss();
                             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__children_children__["a" /* ChildrenPage */]);
                         });
                     });
                 });
             }
             else {
+                _this.loader.dismiss();
                 alert("user not allowed to login");
             }
         }).catch(function (err) {
+            _this.loader.dismiss();
             alert("error when login,Please check internet connection.");
         });
     };
@@ -1399,13 +1417,19 @@ var LoginPage = (function () {
         this.menuCtrl.enable(false);
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__register1_register1__["a" /* Register1Page */]);
     };
+    LoginPage.prototype.presentLoading = function () {
+        this.loader = this.loadingCtrl.create({
+            content: "Loading..."
+        });
+        this.loader.present();
+    };
     return LoginPage;
 }());
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/'<ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>{{ \'LOGIN_PAGE.title\' | translate }}</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.idNumber\' | translate }}" name="id" [(ngModel)]="id" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.password\' | translate }}" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="primary" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.login\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> {{ \'BUTTONS.dontHaveAccount\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
         __WEBPACK_IMPORTED_MODULE_7__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]])
 ], LoginPage);
 

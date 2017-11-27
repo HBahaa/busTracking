@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { NavController, MenuController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
@@ -19,9 +19,9 @@ import { GetNotificationProvider } from '../../providers/get-notification/get-no
 export class LoginPage {
   id: any;
   password: any;
+  loader:any;
 
-
-  constructor(public navCtrl: NavController, public storage: Storage, private menuCtrl: MenuController, 
+  constructor(public navCtrl: NavController, public storage: Storage, private menuCtrl: MenuController, private loadingCtrl: LoadingController,
               private getChildrenProvider: GetChildrenProvider, private getNotificationProvider: GetNotificationProvider) {
   }
 
@@ -30,6 +30,8 @@ export class LoginPage {
   }
 
   login() {
+    this.presentLoading();
+
     this.menuCtrl.enable(true);
 
     console.log("this.id", this.id)
@@ -57,6 +59,7 @@ export class LoginPage {
         this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
           this.storage.set("token", response.token).then(()=>{
             this.getNotificationProvider.getNotification().then((flag)=>{
+              this.loader.dismiss();
               this.navCtrl.setRoot(ChildrenPage);
             });
           });
@@ -64,10 +67,12 @@ export class LoginPage {
         
       }
       else{
+        this.loader.dismiss();
         alert("user not allowed to login")
       }
 
     }).catch((err)=>{
+      this.loader.dismiss();
       alert("error when login,Please check internet connection.")
     });
     
@@ -76,6 +81,13 @@ export class LoginPage {
   createAccount(){
     this.menuCtrl.enable(false);
     this.navCtrl.setRoot(Register1Page);
+  }
+
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Loading..."
+    });
+    this.loader.present();
   }
 
 }

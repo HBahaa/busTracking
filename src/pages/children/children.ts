@@ -30,7 +30,7 @@ export class ChildrenPage {
 
 		platform.ready().then(() => {
 			this.storage.get("children").then((data)=>{
-				console.log("data", data)
+				console.log("data == ", data)
 				this.children = data;
 			}).catch((error)=>{
 				console.log("can't get children from storage");
@@ -96,6 +96,15 @@ export class ChildrenPage {
 
 	scheduleNotification() {
 		LocalNotifications.schedule(this.items);
+	}
+
+	ionViewWillEnter(){
+		console.log("ionViewWillEnter")
+	}
+
+	ionViewWillLoad(){
+		console.log("ionViewWillLoad");
+		
 	}
 
 	serverConnection() {
