@@ -88,10 +88,8 @@ export class MyApp {
   loadingPage(){
     this.storage.ready().then(()=>{
 
-      this.storage.get("token").then((data)=>{
+      this.storage.get("children").then((data)=>{
         if(data != null){
-
-          console.log("userDta ", data)
           this.rootPage = ChildrenPage;
           this.loader.dismiss();
 

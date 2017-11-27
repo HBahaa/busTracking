@@ -13,7 +13,8 @@ import { GetNotificationProvider } from '../../providers/get-notification/get-no
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  providers: [GetChildrenProvider, GetNotificationProvider]
 })
 
 export class LoginPage {
@@ -34,47 +35,62 @@ export class LoginPage {
 
     this.menuCtrl.enable(true);
 
-    console.log("this.id", this.id)
-    console.log("this.password", this.password)
-    
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+this.id+"&password="+this.password,
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache",
-        "postman-token": "aaf1634c-7a6c-e7eb-ce6f-8f7a0448616b",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
-        "Access-Control-Allow-Origin":"*",
-        "Allow-Control-Allow-Origin":"*"
-      }
-    }
+    this.storage.clear().then(()=>{
 
-    $.ajax(settings).done((response)=> {
-     if(response.success)
-      {
-        this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
-          this.storage.set("token", response.token).then(()=>{
-            this.getNotificationProvider.getNotification().then((flag)=>{
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid=12345678901234&password=Hb2208",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+          "postman-token": "aaf1634c-7a6c-e7eb-ce6f-8f7a0448616b",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
+          "Access-Control-Allow-Origin":"*",
+          "Allow-Control-Allow-Origin":"*"
+        }
+      }
+
+      $.ajax(settings).then((response)=> {
+       if(response.success)
+        {
+          this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
+            if (flag) {
+              this.storage.set("token",response.token);
               this.loader.dismiss();
               this.navCtrl.setRoot(ChildrenPage);
-            });
+              // this.getNotificationProvider.getNotification(response.token).then((data)=>{
+              //   
+              //   this.loader.dismiss();
+                
+              // }).catch(()=>{
+              //   alert("no response from get notification")
+              // });
+            }else{
+              alert("flag false in getting children")
+              this.loader.dismiss();
+            }
+            
           });
-        });
-        
-      }
-      else{
-        this.loader.dismiss();
-        alert("user not allowed to login")
-      }
+          
+        }
+        else{
+          this.loader.dismiss();
+          alert("user not allowed to login")
+        }
 
-    }).catch((err)=>{
-      this.loader.dismiss();
-      alert("error when login,Please check internet connection.")
-    });
+      }).catch((err)=>{
+        this.loader.dismiss();
+        alert("error when login,Please check internet connection.")
+      });
+
+    }).catch(()=>{
+      alert("storage not cleared")
+    })
+    
+    
     
   }
 

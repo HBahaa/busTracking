@@ -32,33 +32,39 @@ var GetNotificationProvider = (function () {
         this.storage = storage;
         console.log('Hello GetNotificationProvider Provider');
     }
-    GetNotificationProvider.prototype.getNotification = function () {
+    GetNotificationProvider.prototype.getNotification = function (token) {
         var _this = this;
-        return new Promise(function (resolve) {
-            _this.storage.get("children").then(function (result) {
-                _this.children = result;
-            });
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.append("Accept", 'application/json');
-            headers.append('Content-Type', 'application/json');
-            headers.append('Allow-Control-Allow-Origin', '*');
-            headers.append('Access-Control-Allow-Origin', '*');
-            var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
-            _this.storage.get("tags").then(function (tags) {
-                console.log("tags", tags);
-                __WEBPACK_IMPORTED_MODULE_3_jquery__["each"](tags, function (index, tag) {
-                    var url = "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notification/" + tag + "?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInN0YXR1cyI6ImxvZ2dlZCIsImRhdGEiOlt7Im5hbWUiOiJIZWJhIiwicGFzcyI6IkhiMjIwOCIsImNoaWxkcmVuIjp7IjEyMjEyMjEyMiI6eyJidXMiOiJidXMgTm8uNSIsImJ1c19pZCI6IjEyMzQ1NjciLCJuYW1lIjoiRGVtbyBQYXNzZW5nZXIifSwiMTIzMTIzMTIzIjp7ImJ1cyI6ImJ1cyBOby4zIiwiYnVzX2lkIjoiMTIzNDA0MyIsIm5hbWUiOiJQYXNzZW5nZXIyIn19LCJsb2MiOnsibG9uZyI6ImZ1bmN0aW9uICgpe3JldHVybiBifSIsImxhdCI6ImZ1bmN0aW9uICgpe3JldHVybiBhfSJ9LCJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInNlY0NvZGUiOiI1ODA3MTcxNTEzNjc5OCIsInBhc3NTdGF0dXMiOiJibG9ja2VkIiwiY3JlYXRlZF9ub3RpZmljYXRpb24iOmZhbHNlLCJpZCI6IjVhMTViMTIxYzQxMjgzNTllNWVmNDYzZSJ9XSwiaWF0IjoxNTExMzc5Njc4fQ.JuJL7wU1yvTjMTey8ZchMKPjOfAGGk6__kXiqMu7Qko";
-                    _this.http.post(url, options).subscribe(function (data) {
-                        console.log(JSON.parse(data['_body']));
-                        var messages = JSON.parse(data['_body']).message;
-                        _this.storage.set(tag, messages);
-                        // this.storage.get("children").then((result)=>{
+        var dfd = __WEBPACK_IMPORTED_MODULE_3_jquery__["Deferred"]();
+        this.storage.get("children").then(function (result) {
+            _this.children = result;
+        });
+        this.storage.get("tags").then(function (tags) {
+            console.log("tags", tags);
+            __WEBPACK_IMPORTED_MODULE_3_jquery__["each"](tags, function (index, tag) {
+                console.log("tag", tag);
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    // "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notification/"+tag+"?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInN0YXR1cyI6ImxvZ2dlZCIsImRhdGEiOlt7Im5hbWUiOiJIZWJhIiwicGFzcyI6IkhiMjIwOCIsImNoaWxkcmVuIjp7IjEyMjEyMjEyMiI6eyJidXMiOiJidXMgTm8uNSIsImJ1c19pZCI6IjEyMzQ1NjciLCJuYW1lIjoiRGVtbyBQYXNzZW5nZXIifSwiMTIzMTIzMTIzIjp7ImJ1cyI6ImJ1cyBOby4zIiwiYnVzX2lkIjoiMTIzNDA0MyIsIm5hbWUiOiJQYXNzZW5nZXIyIn19LCJsb2MiOnsibG9uZyI6ImZ1bmN0aW9uICgpe3JldHVybiBifSIsImxhdCI6ImZ1bmN0aW9uICgpe3JldHVybiBhfSJ9LCJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInNlY0NvZGUiOiI1ODA3MTcxNTEzNjc5OCIsInBhc3NTdGF0dXMiOiJibG9ja2VkIiwiY3JlYXRlZF9ub3RpZmljYXRpb24iOmZhbHNlLCJpZCI6IjVhMTViMTIxYzQxMjgzNTllNWVmNDYzZSJ9XSwiaWF0IjoxNTExMzc5Njc4fQ.JuJL7wU1yvTjMTey8ZchMKPjOfAGGk6__kXiqMu7Qko",
+                    "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notification/" + tag + "?token=" + token,
+                    "method": "POST",
+                    "headers": {
+                        "cache-control": "no-cache",
+                        "postman-token": "0de21fdb-9125-bb9b-15bd-e4fb1736e465",
+                        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
+                        "Access-Control-Allow-Origin": "*",
+                        "Allow-Control-Allow-Origin": "*"
+                    }
+                };
+                __WEBPACK_IMPORTED_MODULE_3_jquery__["ajax"](settings).done(function (response) {
+                    if (response.success) {
+                        var messages_1 = response.message;
+                        _this.storage.set(tag, messages_1);
                         __WEBPACK_IMPORTED_MODULE_3_jquery__["each"](_this.children, function (i, child) {
                             if (tag == child.tag) {
-                                console.log("tag = ", tag);
-                                console.log("child.tag = ", child.tag);
-                                if (messages.length > 0) {
-                                    child.lastMsg = messages[messages.length - 1];
+                                if (messages_1.length > 0) {
+                                    child.lastMsg = messages_1[messages_1.length - 1];
                                 }
                                 else {
                                     child.lastMsg = [];
@@ -66,24 +72,26 @@ var GetNotificationProvider = (function () {
                             }
                             console.log("child", child);
                         });
-                        // })
                         _this.storage.set("children", _this.children);
-                        resolve(true);
-                    }, function (error) {
-                        console.log(error); // Error getting the data
-                        resolve(false);
-                    });
+                        dfd.resolve(_this.children);
+                    }
+                    else {
+                        // alert("children not allowed")
+                        dfd.reject("children not allowed");
+                    }
                 }).fail(function (error) {
-                    resolve(false);
+                    // console.log(error)
+                    dfd.reject(error);
                 });
             });
         });
+        return dfd.promise();
     };
     return GetNotificationProvider;
 }());
 GetNotificationProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], GetNotificationProvider);
 
 //# sourceMappingURL=get-notification.js.map
@@ -130,7 +138,8 @@ var GetChildrenProvider = (function () {
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/children?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInN0YXR1cyI6ImxvZ2dlZCIsImRhdGEiOlt7Im5hbWUiOiJIZWJhIiwicGFzcyI6IkhiMjIwOCIsImNoaWxkcmVuIjp7IjEyMjEyMjEyMiI6eyJidXMiOiJidXMgTm8uNSIsImJ1c19pZCI6IjEyMzQ1NjciLCJuYW1lIjoiRGVtbyBQYXNzZW5nZXIifSwiMTIzMTIzMTIzIjp7ImJ1cyI6ImJ1cyBOby4zIiwiYnVzX2lkIjoiMTIzNDA0MyIsIm5hbWUiOiJQYXNzZW5nZXIyIn19LCJsb2MiOnsibG9uZyI6ImZ1bmN0aW9uICgpe3JldHVybiBifSIsImxhdCI6ImZ1bmN0aW9uICgpe3JldHVybiBhfSJ9LCJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInNlY0NvZGUiOiI1ODA3MTcxNTEzNjc5OCIsInBhc3NTdGF0dXMiOiJibG9ja2VkIiwiY3JlYXRlZF9ub3RpZmljYXRpb24iOmZhbHNlLCJpZCI6IjVhMTViMTIxYzQxMjgzNTllNWVmNDYzZSJ9XSwiaWF0IjoxNTExMzc5Njc4fQ.JuJL7wU1yvTjMTey8ZchMKPjOfAGGk6__kXiqMu7Qko",
+                // "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/children?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInN0YXR1cyI6ImxvZ2dlZCIsImRhdGEiOlt7Im5hbWUiOiJIZWJhIiwicGFzcyI6IkhiMjIwOCIsImNoaWxkcmVuIjp7IjEyMjEyMjEyMiI6eyJidXMiOiJidXMgTm8uNSIsImJ1c19pZCI6IjEyMzQ1NjciLCJuYW1lIjoiRGVtbyBQYXNzZW5nZXIifSwiMTIzMTIzMTIzIjp7ImJ1cyI6ImJ1cyBOby4zIiwiYnVzX2lkIjoiMTIzNDA0MyIsIm5hbWUiOiJQYXNzZW5nZXIyIn19LCJsb2MiOnsibG9uZyI6ImZ1bmN0aW9uICgpe3JldHVybiBifSIsImxhdCI6ImZ1bmN0aW9uICgpe3JldHVybiBhfSJ9LCJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInNlY0NvZGUiOiI1ODA3MTcxNTEzNjc5OCIsInBhc3NTdGF0dXMiOiJibG9ja2VkIiwiY3JlYXRlZF9ub3RpZmljYXRpb24iOmZhbHNlLCJpZCI6IjVhMTViMTIxYzQxMjgzNTllNWVmNDYzZSJ9XSwiaWF0IjoxNTExMzc5Njc4fQ.JuJL7wU1yvTjMTey8ZchMKPjOfAGGk6__kXiqMu7Qko",
+                "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/children?token=" + token,
                 "method": "POST",
                 "headers": {
                     "content-type": "application/json",
@@ -167,7 +176,7 @@ var GetChildrenProvider = (function () {
 }());
 GetChildrenProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], GetChildrenProvider);
 
 //# sourceMappingURL=get-children.js.map
@@ -964,7 +973,7 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_12__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_15__app_component__["a" /* MyApp */], { scrollAssist: false, autoFocusAssist: false }, {
@@ -1044,7 +1053,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ChildrenPage = (function () {
-    function ChildrenPage(navCtrl, storage, backgroundMode, getNotificationProvider, platform, alertCtrl, getChildrenProvider) {
+    function ChildrenPage(navCtrl, storage, backgroundMode, getNotificationProvider, platform, alertCtrl, getChildrenProvider, navParams) {
         // this.serverConnection();
         var _this = this;
         this.navCtrl = navCtrl;
@@ -1054,15 +1063,10 @@ var ChildrenPage = (function () {
         this.platform = platform;
         this.alertCtrl = alertCtrl;
         this.getChildrenProvider = getChildrenProvider;
+        this.navParams = navParams;
         this.children = [];
         this.items = [];
         platform.ready().then(function () {
-            _this.storage.get("children").then(function (data) {
-                console.log("data == ", data);
-                _this.children = data;
-            }).catch(function (error) {
-                console.log("can't get children from storage");
-            });
             // this.backgroundMode.isActive();
             // this.backgroundMode.on("enable").subscribe(() => {
             // 	console.log("enabled")
@@ -1102,15 +1106,18 @@ var ChildrenPage = (function () {
             alert("error 1: " + error);
         });
     }
-    // ionViewDidLoad(){
-    // 	this.getChildrenProvider.getAllChildren("token").then((flag) => {
-    // 		if (flag) {
-    // 			this.getNotificationProvider.getNotification();
-    // 		}
-    // 	}).catch((err)=>{
-    // 		console.log("errrrror")
-    // 	});
-    // }
+    ChildrenPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.storage.get("token").then(function (token) {
+            _this.getNotificationProvider.getNotification(token).then(function (data) {
+                _this.children = data;
+            }).catch(function (err) {
+                console.log("errrrror");
+            });
+        }).catch(function (err) {
+            alert("can't get token");
+        });
+    };
     ChildrenPage.prototype.childDetails = function (tag, child) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__details_details__["a" /* DetailsPage */], { 'param1': tag, 'param2': child });
     };
@@ -1119,9 +1126,6 @@ var ChildrenPage = (function () {
     };
     ChildrenPage.prototype.ionViewWillEnter = function () {
         console.log("ionViewWillEnter");
-    };
-    ChildrenPage.prototype.ionViewWillLoad = function () {
-        console.log("ionViewWillLoad");
     };
     ChildrenPage.prototype.serverConnection = function () {
         var _this = this;
@@ -1133,26 +1137,26 @@ var ChildrenPage = (function () {
             _this.socket.emit("set", { "topics": ['122122122', '123123123'] });
             _this.socket.on("serverpublisher", function (data) {
                 console.log("serverpublisher ", data);
-                _this.getNotificationProvider.getNotification().then(function (flag) {
-                    if (flag) {
-                        _this.storage.get("children").then(function (data) {
-                            _this.children = data;
-                        });
-                        _this.items[0] = {
-                            id: 1,
-                            title: data.status,
-                            text: data.msg,
-                            data: data,
-                            at: new Date(new Date().getTime())
-                        };
-                        _this.scheduleNotification();
-                    }
-                    else {
-                        console.log("flag is false");
-                    }
-                }).catch(function (err) {
-                    console.log("error", err);
-                });
+                // this.getNotificationProvider.getNotification().then((flag)=>{
+                // 	if (flag) {
+                // 		this.storage.get("children").then((data)=>{
+                // 			this.children = data;
+                // 		})
+                // 		this.items[0] = {
+                // 			id: 1,
+                // 			title: data.status,
+                // 			text: data.msg,
+                // 			data: data,
+                // 			at: new Date(new Date().getTime())
+                // 		}
+                // 		this.scheduleNotification();
+                // 	}
+                // 	else{
+                // 		console.log("flag is false")
+                // 	}
+                // }).catch((err)=>{
+                // 	console.log("error", err)
+                // })
             });
             // this.socket.emit("castUp", 'heba');
             // this.socket.on("castDo", (data) => {
@@ -1181,11 +1185,12 @@ var ChildrenPage = (function () {
 }());
 ChildrenPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'CHILDREN_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std" *ngFor="let child of children">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n      <ion-row>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.name\' | translate }}:</span></ion-col><ion-col col-8><p>{{child.name}}</p></ion-col>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.status\' | translate }}:</span></ion-col><ion-col col-8><p>{{child["lastMsg"]["status"]}}</p></ion-col>\n      </ion-row>\n      <button ion-button color="mainColor" (click)="childDetails(child.tag, child)" >{{ \'CHILDREN_PAGE.details\' | translate }}</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/
+        selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'CHILDREN_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std" *ngFor="let child of children">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n      <ion-row>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.name\' | translate }}:</span></ion-col><ion-col col-8><p>{{child.name}}</p></ion-col>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.status\' | translate }}:</span></ion-col><ion-col col-8><p>{{child["lastMsg"].status}}</p></ion-col>\n      </ion-row>\n      <button ion-button color="mainColor" (click)="childDetails(child.tag, child)" >{{ \'CHILDREN_PAGE.details\' | translate }}</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_7__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_background_mode__["a" /* BackgroundMode */],
         __WEBPACK_IMPORTED_MODULE_7__providers_get_notification_get_notification__["a" /* GetNotificationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */]])
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
 ], ChildrenPage);
 
 //# sourceMappingURL=children.js.map
@@ -1376,41 +1381,52 @@ var LoginPage = (function () {
         var _this = this;
         this.presentLoading();
         this.menuCtrl.enable(true);
-        console.log("this.id", this.id);
-        console.log("this.password", this.password);
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid=" + this.id + "&password=" + this.password,
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-                "cache-control": "no-cache",
-                "postman-token": "aaf1634c-7a6c-e7eb-ce6f-8f7a0448616b",
-                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
-                "Access-Control-Allow-Origin": "*",
-                "Allow-Control-Allow-Origin": "*"
-            }
-        };
-        __WEBPACK_IMPORTED_MODULE_4_jquery__["ajax"](settings).done(function (response) {
-            if (response.success) {
-                _this.getChildrenProvider.getAllChildren(response.token).then(function (flag) {
-                    _this.storage.set("token", response.token).then(function () {
-                        _this.getNotificationProvider.getNotification().then(function (flag) {
+        this.storage.clear().then(function () {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid=12345678901234&password=Hb2208",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json",
+                    "cache-control": "no-cache",
+                    "postman-token": "aaf1634c-7a6c-e7eb-ce6f-8f7a0448616b",
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
+                    "Access-Control-Allow-Origin": "*",
+                    "Allow-Control-Allow-Origin": "*"
+                }
+            };
+            __WEBPACK_IMPORTED_MODULE_4_jquery__["ajax"](settings).then(function (response) {
+                if (response.success) {
+                    _this.getChildrenProvider.getAllChildren(response.token).then(function (flag) {
+                        if (flag) {
+                            _this.storage.set("token", response.token);
                             _this.loader.dismiss();
                             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__children_children__["a" /* ChildrenPage */]);
-                        });
+                            // this.getNotificationProvider.getNotification(response.token).then((data)=>{
+                            //   
+                            //   this.loader.dismiss();
+                            // }).catch(()=>{
+                            //   alert("no response from get notification")
+                            // });
+                        }
+                        else {
+                            alert("flag false in getting children");
+                            _this.loader.dismiss();
+                        }
                     });
-                });
-            }
-            else {
+                }
+                else {
+                    _this.loader.dismiss();
+                    alert("user not allowed to login");
+                }
+            }).catch(function (err) {
                 _this.loader.dismiss();
-                alert("user not allowed to login");
-            }
-        }).catch(function (err) {
-            _this.loader.dismiss();
-            alert("error when login,Please check internet connection.");
+                alert("error when login,Please check internet connection.");
+            });
+        }).catch(function () {
+            alert("storage not cleared");
         });
     };
     LoginPage.prototype.createAccount = function () {
@@ -1427,7 +1443,8 @@ var LoginPage = (function () {
 }());
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/'<ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>{{ \'LOGIN_PAGE.title\' | translate }}</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.idNumber\' | translate }}" name="id" [(ngModel)]="id" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.password\' | translate }}" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="primary" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.login\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> {{ \'BUTTONS.dontHaveAccount\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/'<ion-content class="login-content">\n    <form #loginForm="ngForm" (ngSubmit)="login()">\n      <ion-row>\n        <ion-col>\n          <h3>{{ \'LOGIN_PAGE.title\' | translate }}</h3>\n          <ion-list inset>\n            <ion-item>\n              <ion-label> <ion-icon name="person"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.idNumber\' | translate }}" name="id" [(ngModel)]="id" required></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>\n              <ion-input type="text" placeholder="{{ \'FORM.password\' | translate }}" name="password" [(ngModel)]="password" required></ion-input>\n            </ion-item>\n\n            <button ion-button type="submit" color="primary" block round [disabled]="!loginForm.form.valid">\n              <ion-icon name="log-in"></ion-icon> {{ \'FORM.login\' | translate }}</button>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n    </form>\n    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> {{ \'BUTTONS.dontHaveAccount\' | translate }}</button>\n</ion-content>'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/login/login.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_7__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
         __WEBPACK_IMPORTED_MODULE_7__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]])

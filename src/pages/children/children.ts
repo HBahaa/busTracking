@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, AlertController } from 'ionic-angular';
+import { NavController, Platform, AlertController, NavParams } from 'ionic-angular';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { LocalNotifications } from 'ionic-native';
 import { Storage } from '@ionic/storage';
@@ -13,7 +13,8 @@ import { GetChildrenProvider } from '../../providers/get-children/get-children';
 
 @Component({
   selector: 'page-children',
-  templateUrl: 'children.html'
+  templateUrl: 'children.html',
+  providers: [GetChildrenProvider, GetNotificationProvider]
 })
 export class ChildrenPage {
 	children: any = [];
@@ -24,17 +25,11 @@ export class ChildrenPage {
 
 	constructor(public navCtrl: NavController, private storage: Storage, public backgroundMode: BackgroundMode,
 				private getNotificationProvider: GetNotificationProvider, private platform: Platform,
-				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider) {	
+				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider, private navParams: NavParams) {	
 
 		// this.serverConnection();
 
 		platform.ready().then(() => {
-			this.storage.get("children").then((data)=>{
-				console.log("data == ", data)
-				this.children = data;
-			}).catch((error)=>{
-				console.log("can't get children from storage");
-			});
 
 			// this.backgroundMode.isActive();
 
@@ -80,15 +75,18 @@ export class ChildrenPage {
 		});
 	}
 
-	// ionViewDidLoad(){
-	// 	this.getChildrenProvider.getAllChildren("token").then((flag) => {
-	// 		if (flag) {
-	// 			this.getNotificationProvider.getNotification();
-	// 		}
-	// 	}).catch((err)=>{
-	// 		console.log("errrrror")
-	// 	});
-	// }
+	ionViewDidLoad(){
+		this.storage.get("token").then((token)=>{
+			this.getNotificationProvider.getNotification(token).then((data) => {
+				this.children = data;
+			}).catch((err)=>{
+				console.log("errrrror")
+			});
+		}).catch((err)=>{
+			alert("can't get token")
+		})
+		
+	}
 
 	childDetails(tag,child){
 		this.navCtrl.push(DetailsPage, {'param1': tag, 'param2': child})
@@ -102,10 +100,6 @@ export class ChildrenPage {
 		console.log("ionViewWillEnter")
 	}
 
-	ionViewWillLoad(){
-		console.log("ionViewWillLoad");
-		
-	}
 
 	serverConnection() {
 		console.log("serverconnection")
@@ -121,30 +115,30 @@ export class ChildrenPage {
 
 				console.log("serverpublisher ", data)
 
-				this.getNotificationProvider.getNotification().then((flag)=>{
+				// this.getNotificationProvider.getNotification().then((flag)=>{
 
-					if (flag) {
+				// 	if (flag) {
 
-						this.storage.get("children").then((data)=>{
-							this.children = data;
-						})
+				// 		this.storage.get("children").then((data)=>{
+				// 			this.children = data;
+				// 		})
 
-						this.items[0] = {
-							id: 1,
-							title: data.status,
-							text: data.msg,
-							data: data,
-							at: new Date(new Date().getTime())
-						}
-						this.scheduleNotification();
-					}
-					else{
-						console.log("flag is false")
-					}
+				// 		this.items[0] = {
+				// 			id: 1,
+				// 			title: data.status,
+				// 			text: data.msg,
+				// 			data: data,
+				// 			at: new Date(new Date().getTime())
+				// 		}
+				// 		this.scheduleNotification();
+				// 	}
+				// 	else{
+				// 		console.log("flag is false")
+				// 	}
 
-				}).catch((err)=>{
-					console.log("error", err)
-				})
+				// }).catch((err)=>{
+				// 	console.log("error", err)
+				// })
 
 			})
 
