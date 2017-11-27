@@ -41,10 +41,10 @@ export class GetChildrenProvider {
 		    		$.each(response.data, (index, value)=>{
 				   		value["tag"] = index;
 				   		this.tags.push(index);
+				   		// this.tags.push(value.bus_id);
 				   		this.children.push(value);
 						this.storage.set("tags", this.tags);
 						this.storage.set("children", this.children);
-
 			        });
 			        resolve(true);
 		      	}

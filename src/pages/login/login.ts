@@ -61,13 +61,6 @@ export class LoginPage {
               this.storage.set("token",response.token);
               this.loader.dismiss();
               this.navCtrl.setRoot(ChildrenPage);
-              // this.getNotificationProvider.getNotification(response.token).then((data)=>{
-              //   
-              //   this.loader.dismiss();
-                
-              // }).catch(()=>{
-              //   alert("no response from get notification")
-              // });
             }else{
               alert("flag false in getting children")
               this.loader.dismiss();

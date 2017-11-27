@@ -25,7 +25,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = ChildrenPage;
   isLoggedIn:boolean;
   loader:any;
 
@@ -36,6 +36,7 @@ export class MyApp {
     ,public loadingCtrl: LoadingController, private storage: Storage) {
 
     // this.initializeApp();
+    this.storage.clear();
 
     platform.ready().then(() => {
 

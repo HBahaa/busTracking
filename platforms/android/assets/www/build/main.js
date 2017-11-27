@@ -8,7 +8,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
@@ -38,6 +38,7 @@ var GetNotificationProvider = (function () {
         this.storage.get("children").then(function (result) {
             _this.children = result;
         });
+        // if (sid == '') {
         this.storage.get("tags").then(function (tags) {
             console.log("tags", tags);
             __WEBPACK_IMPORTED_MODULE_3_jquery__["each"](tags, function (index, tag) {
@@ -70,7 +71,6 @@ var GetNotificationProvider = (function () {
                                     child.lastMsg = [];
                                 }
                             }
-                            console.log("child", child);
                         });
                         _this.storage.set("children", _this.children);
                         dfd.resolve(_this.children);
@@ -80,11 +80,53 @@ var GetNotificationProvider = (function () {
                         dfd.reject("children not allowed");
                     }
                 }).fail(function (error) {
-                    // console.log(error)
                     dfd.reject(error);
                 });
             });
         });
+        //      }
+        //      else{
+        //      	let settings = {
+        // 	"async": true,
+        // 	"crossDomain": true,
+        // 	"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notification/"+sid+"?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInN0YXR1cyI6ImxvZ2dlZCIsImRhdGEiOlt7Im5hbWUiOiJIZWJhIiwicGFzcyI6IkhiMjIwOCIsImNoaWxkcmVuIjp7IjEyMjEyMjEyMiI6eyJidXMiOiJidXMgTm8uNSIsImJ1c19pZCI6IjEyMzQ1NjciLCJuYW1lIjoiRGVtbyBQYXNzZW5nZXIifSwiMTIzMTIzMTIzIjp7ImJ1cyI6ImJ1cyBOby4zIiwiYnVzX2lkIjoiMTIzNDA0MyIsIm5hbWUiOiJQYXNzZW5nZXIyIn19LCJsb2MiOnsibG9uZyI6ImZ1bmN0aW9uICgpe3JldHVybiBifSIsImxhdCI6ImZ1bmN0aW9uICgpe3JldHVybiBhfSJ9LCJuaWQiOiIxMjM0NTY3ODkwMTIzNCIsInNlY0NvZGUiOiI1ODA3MTcxNTEzNjc5OCIsInBhc3NTdGF0dXMiOiJibG9ja2VkIiwiY3JlYXRlZF9ub3RpZmljYXRpb24iOmZhbHNlLCJpZCI6IjVhMTViMTIxYzQxMjgzNTllNWVmNDYzZSJ9XSwiaWF0IjoxNTExMzc5Njc4fQ.JuJL7wU1yvTjMTey8ZchMKPjOfAGGk6__kXiqMu7Qko",
+        // 	// "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notification/"+sid+"?token="+token,
+        // 	"method": "POST",
+        // 	"headers": {
+        // 		"cache-control": "no-cache",
+        // 		"postman-token": "0de21fdb-9125-bb9b-15bd-e4fb1736e465",
+        // 	    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        //         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
+        //         "Access-Control-Allow-Origin":"*",
+        //         "Allow-Control-Allow-Origin":"*"
+        // 	}
+        // }
+        // $.ajax(settings).done((response)=> {
+        // 	if(response.success)
+        //      	{
+        //      		let messages = response.message;
+        //      		this.storage.set(sid, messages);
+        //      		$.each(this.children, (i, child)=>{
+        //           		if (sid == child.tag) {
+        //           			if (messages.length > 0) {
+        //           				child.lastMsg = messages[messages.length - 1];
+        //           			}
+        //           			else{
+        //           				child.lastMsg = [];
+        //           			}
+        //           		}
+        //           	})
+        //           	this.storage.set("children", this.children);
+        //     	dfd.resolve(this.children);
+        //      	}
+        //      	else{
+        //       		// alert("children not allowed")
+        //       		dfd.reject("children not allowed")
+        //      	}
+        // }).fail((error) => {
+        // 	dfd.reject(error)
+        // });
+        //      }
         return dfd.promise();
     };
     return GetNotificationProvider;
@@ -106,7 +148,7 @@ GetNotificationProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
@@ -194,7 +236,7 @@ GetChildrenProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__map_map__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(91);
@@ -673,9 +715,9 @@ HomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__children_children__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__children_children__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__map_map__ = __webpack_require__(156);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -821,7 +863,7 @@ NotificationsPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__children_children__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__children_children__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -909,7 +951,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_notifications_notifications__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_profile_profile__ = __webpack_require__(440);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_details_details__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_children_children__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_children_children__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_login_login__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_register1_register1__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_register2_register2__ = __webpack_require__(438);
@@ -1019,7 +1061,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 67:
+/***/ 68:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1029,11 +1071,13 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_background_mode__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_native__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_socket_io_client__ = __webpack_require__(757);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_socket_io_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__details_details__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_get_notification_get_notification__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_socket_io_client__ = __webpack_require__(757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_socket_io_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__details_details__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_get_children_get_children__ = __webpack_require__(154);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1052,9 +1096,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChildrenPage = (function () {
     function ChildrenPage(navCtrl, storage, backgroundMode, getNotificationProvider, platform, alertCtrl, getChildrenProvider, navParams) {
-        // this.serverConnection();
         var _this = this;
         this.navCtrl = navCtrl;
         this.storage = storage;
@@ -1066,6 +1110,7 @@ var ChildrenPage = (function () {
         this.navParams = navParams;
         this.children = [];
         this.items = [];
+        this.serverConnection();
         platform.ready().then(function () {
             // this.backgroundMode.isActive();
             // this.backgroundMode.on("enable").subscribe(() => {
@@ -1092,7 +1137,7 @@ var ChildrenPage = (function () {
                                 text: 'Yes',
                                 handler: function () {
                                     console.log('Agree clicked');
-                                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__details_details__["a" /* DetailsPage */], { 'param1': json.sid });
+                                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__details_details__["a" /* DetailsPage */], { 'param1': json.sid });
                                     confirm.dismiss();
                                 }
                             }
@@ -1119,66 +1164,64 @@ var ChildrenPage = (function () {
         });
     };
     ChildrenPage.prototype.childDetails = function (tag, child) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__details_details__["a" /* DetailsPage */], { 'param1': tag, 'param2': child });
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__details_details__["a" /* DetailsPage */], { 'param1': tag, 'param2': child });
     };
     ChildrenPage.prototype.scheduleNotification = function () {
         __WEBPACK_IMPORTED_MODULE_3_ionic_native__["a" /* LocalNotifications */].schedule(this.items);
-    };
-    ChildrenPage.prototype.ionViewWillEnter = function () {
-        console.log("ionViewWillEnter");
     };
     ChildrenPage.prototype.serverConnection = function () {
         var _this = this;
         console.log("serverconnection");
         this.socketHost = "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9000";
-        this.socket = __WEBPACK_IMPORTED_MODULE_5_socket_io_client__(this.socketHost);
+        this.socket = __WEBPACK_IMPORTED_MODULE_6_socket_io_client__(this.socketHost);
         this.socket.on("connect", function (msg) {
             console.log("connection ");
-            _this.socket.emit("set", { "topics": ['122122122', '123123123'] });
+            _this.socket.emit("set", { "topics": ['123123123', '122122122'] });
+            console.log("socket");
+            // this.socket.on("serverpublisher", (data) => {
+            // 	console.log("serverpublisher", data)
+            // 	this.items[0] = {
+            // 		id: 1,
+            // 		title: 'New message',
+            // 		text: data.msg,
+            // 		data: data,
+            // 		at: new Date(new Date().getTime())
+            // 	}
+            // 	this.scheduleNotification();
+            // })
             _this.socket.on("serverpublisher", function (data) {
-                console.log("serverpublisher ", data);
-                // this.getNotificationProvider.getNotification().then((flag)=>{
-                // 	if (flag) {
-                // 		this.storage.get("children").then((data)=>{
-                // 			this.children = data;
-                // 		})
-                // 		this.items[0] = {
-                // 			id: 1,
-                // 			title: data.status,
-                // 			text: data.msg,
-                // 			data: data,
-                // 			at: new Date(new Date().getTime())
-                // 		}
-                // 		this.scheduleNotification();
-                // 	}
-                // 	else{
-                // 		console.log("flag is false")
-                // 	}
+                alert("serverpublisher ");
+                var id = data.sid;
+                _this.storage.get("children").then(function (ch) {
+                    __WEBPACK_IMPORTED_MODULE_5_jquery__["each"](ch, function (index, child) {
+                        alert("child");
+                        if (child.tag = id) {
+                            alert("equal");
+                            child.lastMsg = data;
+                        }
+                    });
+                    alert("children");
+                    _this.children = ch;
+                    _this.storage.set("children", ch);
+                });
+                // this.storage.get("token").then((token)=>{
+                // 	this.getNotificationProvider.getNotification( token).then((children) => {
+                // 		this.children = children;
+                _this.items[0] = {
+                    id: 1,
+                    title: data.status,
+                    text: data.msg,
+                    data: data,
+                    at: new Date(new Date().getTime())
+                };
+                _this.scheduleNotification();
+                // 	}).catch((err)=>{
+                // 		console.log("errrrror")
+                // 	});
                 // }).catch((err)=>{
-                // 	console.log("error", err)
+                // 	alert("can't get token")
                 // })
             });
-            // this.socket.emit("castUp", 'heba');
-            // this.socket.on("castDo", (data) => {
-            // 	// var settings = {
-            // 	// 	"async": true,
-            // 	// 	"crossDomain": true,
-            // 	// 	"url": `http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:3000/api/parents?filter[where][name]=${this.uname}`,
-            // 	// 	"method": "GET",
-            // 	// 	"headers": {
-            // 	// 		"cache-control": "no-cache",
-            // 	// 		"postman-token": "161fe2ca-1d46-f9af-2134-8dd785b50365"
-            // 	// 	}
-            // 	// }
-            // 	// $.ajax(settings).done((response) => {
-            // 	// 	for (let i in response) {
-            // 	// 		this.rooms = response[i]['rooms'];
-            // 	// 	}
-            // 	// 	this.socket.emit("set", { "topics": this.rooms });
-            // 	// }).fail((error) => {
-            // 	// 	console.log(error)
-            // 	// });
-            // });
         });
     };
     return ChildrenPage;
@@ -1186,11 +1229,11 @@ var ChildrenPage = (function () {
 ChildrenPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'CHILDREN_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="std" *ngFor="let child of children">\n    <ion-item>\n      <ion-avatar item-start>\n        <img src="assets/imgs/1.png">\n      </ion-avatar>\n      <ion-row>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.name\' | translate }}:</span></ion-col><ion-col col-8><p>{{child.name}}</p></ion-col>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.status\' | translate }}:</span></ion-col><ion-col col-8><p>{{child["lastMsg"].status}}</p></ion-col>\n      </ion-row>\n      <button ion-button color="mainColor" (click)="childDetails(child.tag, child)" >{{ \'CHILDREN_PAGE.details\' | translate }}</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTracking/src/pages/children/children.html"*/,
-        providers: [__WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_7__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_9__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_background_mode__["a" /* BackgroundMode */],
-        __WEBPACK_IMPORTED_MODULE_7__providers_get_notification_get_notification__["a" /* GetNotificationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__["a" /* GetNotificationProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_9__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
 ], ChildrenPage);
 
 //# sourceMappingURL=children.js.map
@@ -1209,7 +1252,7 @@ ChildrenPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_children_children__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_children_children__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_notifications_notifications__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_profile_profile__ = __webpack_require__(440);
@@ -1237,7 +1280,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MyApp = (function () {
     function MyApp(platform, statusBar, splashScreen, translateService, keyboard, toastCtrl, loadingCtrl, storage) {
-        // this.initializeApp();
         var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
@@ -1248,6 +1290,8 @@ var MyApp = (function () {
         this.loadingCtrl = loadingCtrl;
         this.storage = storage;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_11__pages_login_login__["a" /* LoginPage */];
+        // this.initializeApp();
+        this.storage.clear();
         platform.ready().then(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 console.log("window.cordova && window.cordova.plugins.Keyboard");
@@ -1287,9 +1331,8 @@ var MyApp = (function () {
     MyApp.prototype.loadingPage = function () {
         var _this = this;
         this.storage.ready().then(function () {
-            _this.storage.get("token").then(function (data) {
+            _this.storage.get("children").then(function (data) {
                 if (data != null) {
-                    console.log("userDta ", data);
                     _this.rootPage = __WEBPACK_IMPORTED_MODULE_7__pages_children_children__["a" /* ChildrenPage */];
                     _this.loader.dismiss();
                 }
@@ -1341,9 +1384,9 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__children_children__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__children_children__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__register1_register1__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_get_children_get_children__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_get_notification_get_notification__ = __webpack_require__(153);
@@ -1404,12 +1447,6 @@ var LoginPage = (function () {
                             _this.storage.set("token", response.token);
                             _this.loader.dismiss();
                             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__children_children__["a" /* ChildrenPage */]);
-                            // this.getNotificationProvider.getNotification(response.token).then((data)=>{
-                            //   
-                            //   this.loader.dismiss();
-                            // }).catch(()=>{
-                            //   alert("no response from get notification")
-                            // });
                         }
                         else {
                             alert("flag false in getting children");

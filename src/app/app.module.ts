@@ -27,6 +27,7 @@ import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
 import { GetNotificationProvider } from '../providers/get-notification/get-notification';
 import { GetChildrenProvider } from '../providers/get-children/get-children';
+import { LastNotificationProvider } from '../providers/last-notification/last-notification';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -84,7 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GetNotificationProvider,
-    GetChildrenProvider
+    GetChildrenProvider,
+    LastNotificationProvider
   ]
 })
 export class AppModule {}

@@ -27,7 +27,7 @@ export class ChildrenPage {
 				private getNotificationProvider: GetNotificationProvider, private platform: Platform,
 				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider, private navParams: NavParams) {	
 
-		// this.serverConnection();
+		this.serverConnection();
 
 		platform.ready().then(() => {
 
@@ -96,78 +96,70 @@ export class ChildrenPage {
 		LocalNotifications.schedule(this.items);
 	}
 
-	ionViewWillEnter(){
-		console.log("ionViewWillEnter")
-	}
-
-
 	serverConnection() {
-		console.log("serverconnection")
 
+		console.log("serverconnection")
 		this.socketHost = "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9000";
 		this.socket = io(this.socketHost);
 		this.socket.on("connect", (msg) => {
 			console.log("connection ")
 
-			this.socket.emit("set", { "topics": ['122122122', '123123123'] });
+			this.socket.emit("set", { "topics": ['123123123', '122122122'] });
+
+			console.log("socket")
+
+			// this.socket.on("serverpublisher", (data) => {
+
+			// 	console.log("serverpublisher", data)
+
+			// 	this.items[0] = {
+			// 		id: 1,
+			// 		title: 'New message',
+			// 		text: data.msg,
+			// 		data: data,
+			// 		at: new Date(new Date().getTime())
+			// 	}
+			// 	this.scheduleNotification();
+			// })
 
 			this.socket.on("serverpublisher", (data) => {
+				alert("serverpublisher ");
 
-				console.log("serverpublisher ", data)
+				let id = data.sid
+				this.storage.get("children").then((ch)=>{
+					$.each(ch, (index, child)=>{
+						alert("child")
+						if (child.tag = id) {
+							alert("equal")
+							child.lastMsg = data;
+						}
+					});
+					alert("children")
+					this.children = ch;
+					this.storage.set("children", ch);
+				})
 
-				// this.getNotificationProvider.getNotification().then((flag)=>{
+				// this.storage.get("token").then((token)=>{
+				// 	this.getNotificationProvider.getNotification( token).then((children) => {
+				// 		this.children = children;
 
-				// 	if (flag) {
+						this.items[0] = {
+							id: 1,
+							title: data.status,
+							text: data.msg,
+							data: data,
+							at: new Date(new Date().getTime())
+						}
+						this.scheduleNotification();
 
-				// 		this.storage.get("children").then((data)=>{
-				// 			this.children = data;
-				// 		})
-
-				// 		this.items[0] = {
-				// 			id: 1,
-				// 			title: data.status,
-				// 			text: data.msg,
-				// 			data: data,
-				// 			at: new Date(new Date().getTime())
-				// 		}
-				// 		this.scheduleNotification();
-				// 	}
-				// 	else{
-				// 		console.log("flag is false")
-				// 	}
-
+				// 	}).catch((err)=>{
+				// 		console.log("errrrror")
+				// 	});
 				// }).catch((err)=>{
-				// 	console.log("error", err)
+				// 	alert("can't get token")
 				// })
-
+				
 			})
-
-			// this.socket.emit("castUp", 'heba');
-
-			// this.socket.on("castDo", (data) => {
-			// 	// var settings = {
-			// 	// 	"async": true,
-			// 	// 	"crossDomain": true,
-			// 	// 	"url": `http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:3000/api/parents?filter[where][name]=${this.uname}`,
-			// 	// 	"method": "GET",
-			// 	// 	"headers": {
-			// 	// 		"cache-control": "no-cache",
-			// 	// 		"postman-token": "161fe2ca-1d46-f9af-2134-8dd785b50365"
-			// 	// 	}
-			// 	// }
-
-			// 	// $.ajax(settings).done((response) => {
-
-			// 	// 	for (let i in response) {
-			// 	// 		this.rooms = response[i]['rooms'];
-			// 	// 	}
-			// 	// 	this.socket.emit("set", { "topics": this.rooms });
-
-			// 	// }).fail((error) => {
-			// 	// 	console.log(error)
-			// 	// });
-
-			// });
 		})
 
 		

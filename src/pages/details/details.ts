@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { BackgroundMode } from '@ionic-native/background-mode';
-import { LocalNotifications } from 'ionic-native';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import * as io from "socket.io-client";
