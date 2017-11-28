@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, AlertController, NavParams } from 'ionic-angular';
+import { NavController, Platform, AlertController } from 'ionic-angular';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { LocalNotifications } from 'ionic-native';
 import { Storage } from '@ionic/storage';
@@ -25,7 +25,7 @@ export class ChildrenPage {
 
 	constructor(public navCtrl: NavController, private storage: Storage, public backgroundMode: BackgroundMode,
 				private getNotificationProvider: GetNotificationProvider, private platform: Platform,
-				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider, private navParams: NavParams) {	
+				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider) {	
 
 		this.serverConnection();
 
@@ -76,6 +76,21 @@ export class ChildrenPage {
 	}
 
 	ionViewDidLoad(){
+		// console.log("ionViewDidLoad")
+		// this.getChildrenProvider.getAllChildren("response.token").then((flag) => {
+  //           if (flag) {
+  //           	console.log("flag", flag)
+  //             // this.storage.set("token",response.token);
+	 //              this.getNotificationProvider.getNotification("token").then((data) => {
+		// 			this.children = data;
+		// 		}).catch((err)=>{
+		// 			console.log("errrrror")
+		// 		});
+  //           }else{
+  //             alert("flag false in getting children")
+  //           }
+            
+  //         });
 		this.storage.get("token").then((token)=>{
 			this.getNotificationProvider.getNotification(token).then((data) => {
 				this.children = data;
@@ -103,63 +118,50 @@ export class ChildrenPage {
 		this.socket = io(this.socketHost);
 		this.socket.on("connect", (msg) => {
 			console.log("connection ")
+			this.storage.get("rooms").then((rooms)=>{
 
-			this.socket.emit("set", { "topics": ['123123123', '122122122'] });
+				console.log("rooms", rooms)
 
-			console.log("socket")
+				this.socket.emit("set", { "topics": ["123123123", "122122122"] });
+				console.log("socket")
 
-			// this.socket.on("serverpublisher", (data) => {
+				this.socket.on("serverpublisher", (data) => {
+					// console.log("serverpublisher ", data);
 
-			// 	console.log("serverpublisher", data)
+					this.items[0] = {
+						id: 1,
+						title: data.status,
+						text: data.msg,
+						data: data,
+						at: new Date(new Date().getTime())
+					}
+					this.scheduleNotification();
 
-			// 	this.items[0] = {
-			// 		id: 1,
-			// 		title: 'New message',
-			// 		text: data.msg,
-			// 		data: data,
-			// 		at: new Date(new Date().getTime())
-			// 	}
-			// 	this.scheduleNotification();
-			// })
-
-			this.socket.on("serverpublisher", (data) => {
-				alert("serverpublisher ");
-
-				let id = data.sid
-				this.storage.get("children").then((ch)=>{
-					$.each(ch, (index, child)=>{
-						alert("child")
-						if (child.tag = id) {
-							alert("equal")
-							child.lastMsg = data;
+					let id = data.sid
+					// console.log("id"+ id)
+					this.storage.get("children").then((ch)=>{
+						// alert("children"+ ch)
+						if (ch != null || ch != undefined) {
+							$.each(ch, (index, child)=>{
+								// alert("child")
+								if (child.tag == id) {
+									// alert("equal")
+									child.lastMsg = data;
+								}
+							});
+							this.children = ch;
+							this.storage.set("children", ch);
 						}
-					});
-					alert("children")
-					this.children = ch;
-					this.storage.set("children", ch);
+						else{
+							console.log("not found")
+						}
+					})
+
+					
+
 				})
-
-				// this.storage.get("token").then((token)=>{
-				// 	this.getNotificationProvider.getNotification( token).then((children) => {
-				// 		this.children = children;
-
-						this.items[0] = {
-							id: 1,
-							title: data.status,
-							text: data.msg,
-							data: data,
-							at: new Date(new Date().getTime())
-						}
-						this.scheduleNotification();
-
-				// 	}).catch((err)=>{
-				// 		console.log("errrrror")
-				// 	});
-				// }).catch((err)=>{
-				// 	alert("can't get token")
-				// })
-				
 			})
+			
 		})
 
 		
