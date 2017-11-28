@@ -1078,18 +1078,18 @@ var ChildrenPage = (function () {
                         title: notification.status,
                         message: json.msg,
                         buttons: [
+                            // {
+                            // 	text: 'No',
+                            // 	handler: () => {
+                            // 		console.log('Disagree clicked');
+                            // 		confirm.dismiss();
+                            // 	}
+                            // },
                             {
-                                text: 'No',
+                                text: 'Ok',
                                 handler: function () {
-                                    console.log('Disagree clicked');
-                                    confirm.dismiss();
-                                }
-                            },
-                            {
-                                text: 'Yes',
-                                handler: function () {
-                                    console.log('Agree clicked');
-                                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__details_details__["a" /* DetailsPage */], { 'param1': json.sid });
+                                    // console.log('Agree clicked');
+                                    // this.navCtrl.push(DetailsPage, {'param1': json.sid});
                                     confirm.dismiss();
                                 }
                             }
@@ -1143,10 +1143,11 @@ var ChildrenPage = (function () {
         this.socket.on("connect", function (msg) {
             console.log("connection ");
             _this.storage.get("rooms").then(function (rooms) {
-                _this.socket.emit("set", { "topics": rooms });
+                console.log("rooms", rooms);
+                _this.socket.emit("set", { "topics": ["123123123", "122122122"] });
                 console.log("socket");
                 _this.socket.on("serverpublisher", function (data) {
-                    // alert("serverpublisher ");
+                    // console.log("serverpublisher ", data);
                     _this.items[0] = {
                         id: 1,
                         title: data.status,
@@ -1156,13 +1157,13 @@ var ChildrenPage = (function () {
                     };
                     _this.scheduleNotification();
                     var id = data.sid;
-                    // alert("id"+ id)
+                    // console.log("id"+ id)
                     _this.storage.get("children").then(function (ch) {
                         // alert("children"+ ch)
                         if (ch != null || ch != undefined) {
                             __WEBPACK_IMPORTED_MODULE_5_jquery__["each"](ch, function (index, child) {
                                 // alert("child")
-                                if (child.tag = id) {
+                                if (child.tag == id) {
                                     // alert("equal")
                                     child.lastMsg = data;
                                 }

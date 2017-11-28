@@ -25,7 +25,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ChildrenPage;
+  rootPage: any = LoginPage;
   isLoggedIn:boolean;
   loader:any;
 

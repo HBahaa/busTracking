@@ -48,18 +48,18 @@ export class ChildrenPage {
 						title: notification.status,
 						message: json.msg,
 						buttons: [
+							// {
+							// 	text: 'No',
+							// 	handler: () => {
+							// 		console.log('Disagree clicked');
+							// 		confirm.dismiss();
+							// 	}
+							// },
 							{
-								text: 'No',
+								text: 'Ok',
 								handler: () => {
-									console.log('Disagree clicked');
-									confirm.dismiss();
-								}
-							},
-							{
-								text: 'Yes',
-								handler: () => {
-							    	console.log('Agree clicked');
-							    	this.navCtrl.push(DetailsPage, {'param1': json.sid});
+							    	// console.log('Agree clicked');
+							    	// this.navCtrl.push(DetailsPage, {'param1': json.sid});
 							    	confirm.dismiss()
 								}
 							}
