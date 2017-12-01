@@ -82,7 +82,6 @@ export class ChildrenPage {
 			if(res != null ){
 				this.storage.get(res[0].tag).then((data)=>{
 					if (data != null) {
-						alert("data != null")
 						this.children = res;
 					}else{
 						this.storage.get("token").then((token)=>{
@@ -166,15 +165,10 @@ export class ChildrenPage {
 							console.log("not found")
 						}
 					})
-
-					
-
 				})
 			})
 			
-		})
-
-		
+		})	
 	}
 
 }

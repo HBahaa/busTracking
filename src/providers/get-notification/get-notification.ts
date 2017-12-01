@@ -46,6 +46,13 @@ export class GetNotificationProvider {
 					if(response.success)
 			      	{
 			      		let messages = response.message;
+
+			      		$.each(messages, (index, value)=>{
+				            let y = this.getDate(value.time);
+				            $.extend( value, y );
+				        });
+
+
 			      		this.storage.set(child.tag, messages);
             			if (messages.length > 0) {
             				child.lastMsg = messages[messages.length - 1];
@@ -66,6 +73,24 @@ export class GetNotificationProvider {
 			})
 		})
   		return dfd.promise();     
+	}
+
+
+	getDate(timestamp) {
+
+	    timestamp = Number(timestamp);
+	    var date = new Date(timestamp);
+
+	    var m = (date.getMonth() + 1);
+	    var d = date.getDate();
+	    var h = date.getHours();
+	    var min = date.getMinutes();
+	    var s = date.getSeconds();
+
+	    var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
+	    var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
+
+	    return { 'date': formattedDate, 'time': formattedTime };
 	}
 
 }
