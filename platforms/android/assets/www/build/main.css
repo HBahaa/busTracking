@@ -28363,11 +28363,12 @@ page-register1 .register1-content ion-item {
   margin-bottom: 10px;
 }
 
-page-register1 .register1-content ion-col h3 {
+page-register1 .register1-content h3 {
   color: #fff;
   font-size: 26px;
   text-decoration: underline;
   font-family: arail;
+  padding-bottom: 10px;
 }
 
 page-register1 .register1-content ion-col ion-label {
@@ -28476,11 +28477,12 @@ page-register2 .login-content ion-item {
   margin-bottom: 10px;
 }
 
-page-register2 .login-content ion-col h3 {
+page-register2 .login-content h3 {
   color: #fff;
   font-size: 26px;
   text-decoration: underline;
   font-family: arail;
+  padding-bottom: 10px;
 }
 
 page-register2 .login-content ion-col ion-label {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+// import { Http, Headers, RequestOptions } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 import * as $ from 'jquery';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class GetNotificationProvider {
 	children: any;
 
-	constructor(public http: Http, private storage: Storage) {
+	constructor(private storage: Storage) {
 		console.log('Hello GetNotificationProvider Provider');
 	}
 

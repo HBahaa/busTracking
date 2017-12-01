@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import 'rxjs/add/operator/map';
@@ -10,7 +9,7 @@ export class GetChildrenProvider {
 	children: any = [];
 	rooms: any = [];
 
-	constructor(public http: Http, private storage: Storage) {
+	constructor(private storage: Storage) {
 		console.log('Hello GetChildrenProvider Provider');
 	}
 

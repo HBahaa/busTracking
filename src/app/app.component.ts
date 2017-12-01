@@ -5,14 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+import * as $ from 'jquery';
 
 import { ChildrenPage } from '../pages/children/children';
 import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
-import { Register2Page } from '../pages/register2/register2';
-// import { DetailsPage } from '../pages/details/details';
 
 
 declare var cordova:any;
@@ -25,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
   isLoggedIn:boolean;
   loader:any;
 
@@ -36,7 +35,7 @@ export class MyApp {
     ,public loadingCtrl: LoadingController, private storage: Storage) {
 
     // this.initializeApp();
-    this.storage.clear();
+    // this.storage.clear();
 
     platform.ready().then(() => {
 
@@ -55,8 +54,8 @@ export class MyApp {
       translateService.setDefaultLang('en');
       translateService.use('en');
 
-      // this.presentLoading();
-      // this.loadingPage();
+      this.presentLoading();
+      this.loadingPage();
                 
     });
 
@@ -78,12 +77,19 @@ export class MyApp {
   }
 
   userLogout(){
-    console.log("logout");
-    this.storage.clear().then(()=>{
-      this.nav.setRoot(LoginPage);
-    }).catch(()=>{
-      console.log("error")
+    this.storage.get('children').then((result)=>{
+      $.each(result, (index, child)=>{
+        this.storage.remove(child.tag).then(()=>{
+          this.storage.remove('children')
+          this.storage.remove('token').then(()=>{
+            this.nav.setRoot(LoginPage);
+          }).catch(()=>{
+            console.log("error")
+          });
+        });
+      })
     });
+
   }
 
   loadingPage(){

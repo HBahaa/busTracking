@@ -30,7 +30,7 @@
 	<ion-list *ngIf="messages.length > 0">
 		<h2>Notifications</h2>
 	    <button ion-item *ngFor="let message of messages">
-	      <p>{{message.time}}</p>
+	      <p>{{message.time}} | {{message.date}}</p>
 	      <h2>{{message.status}}</h2>
 	      <h3>{{message.msg}}</h3>
 	    </button>

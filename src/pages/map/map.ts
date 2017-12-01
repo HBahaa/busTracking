@@ -81,7 +81,6 @@ loadMap() {
         })
 
         this.map.getMyLocation().then((location)=>{
-
           this.lat = location['latLng']['lat'];
           this.lng = location['latLng']['lng'];
           let mapOption: GoogleMapOptions = {
@@ -111,7 +110,6 @@ loadMap() {
 
           this.getAddress(this.lat, this.lng);
           this.location = {'lat': this.lat, 'lng': this.lng}
-
         })
 
         this.map.setMyLocationEnabled(true);
@@ -188,10 +186,7 @@ loadMap() {
        
     geocoder.geocode({'latLng': location}, (results, status) => {
       if(status == google.maps.GeocoderStatus.OK) {            // if geocode success
-        
-        this.address = results[0].formatted_address; 
-        // alert("from" + this.address);          // if address found, pass to processing function
-      
+        this.address = results[0].formatted_address;       
       } else {
         alert("Geocode failure: " + status);                // alert any other error(s)
         return false;
@@ -202,10 +197,16 @@ loadMap() {
 
   codeAddress() {
 
+    let loc = {};
+
     if (this.searchQuery != undefined) {
       var geocoder  = new google.maps.Geocoder();              // create a geocoder object
 
       geocoder.geocode( { 'address': this.searchQuery},(results, status) => {
+
+        loc["lat"] = results[0].geometry.location.lat();
+        loc["lng"] = results[0].geometry.location.lng();
+
         if (status == google.maps.GeocoderStatus.OK) {
 
           this.map.clear().then(()=>{
@@ -213,11 +214,11 @@ loadMap() {
               title: this.searchQuery,
               icon: 'red',
               animation: 'DROP',
-              position: results[0].geometry.location 
+              position: results[0].geometry.location
             })
 
             this.address = this.searchQuery;
-            this.location = results[0].geometry.location;
+            this.location = loc;
 
             let mapOption: GoogleMapOptions = {
               camera: {

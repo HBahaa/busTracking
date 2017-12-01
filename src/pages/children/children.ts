@@ -76,29 +76,39 @@ export class ChildrenPage {
 	}
 
 	ionViewDidLoad(){
-		// console.log("ionViewDidLoad")
-		// this.getChildrenProvider.getAllChildren("response.token").then((flag) => {
-  //           if (flag) {
-  //           	console.log("flag", flag)
-  //             // this.storage.set("token",response.token);
-	 //              this.getNotificationProvider.getNotification("token").then((data) => {
-		// 			this.children = data;
-		// 		}).catch((err)=>{
-		// 			console.log("errrrror")
-		// 		});
-  //           }else{
-  //             alert("flag false in getting children")
-  //           }
-            
-  //         });
-		this.storage.get("token").then((token)=>{
-			this.getNotificationProvider.getNotification(token).then((data) => {
-				this.children = data;
-			}).catch((err)=>{
-				console.log("errrrror")
-			});
-		}).catch((err)=>{
-			alert("can't get token")
+		console.log("ionViewDidLoad")
+		this.storage.get("children").then((res)=>{
+
+			if(res != null ){
+				this.storage.get(res[0].tag).then((data)=>{
+					if (data != null) {
+						alert("data != null")
+						this.children = res;
+					}else{
+						this.storage.get("token").then((token)=>{
+						this.getNotificationProvider.getNotification(token).then((data) => {
+							this.children = data;
+						}).catch((error5)=>{
+							console.log("error5")
+						});
+						}).catch((error4)=>{
+							alert("error4 can't get token")
+						})	
+					}
+				})	
+			}else{
+				this.storage.get("token").then((token)=>{
+					this.getNotificationProvider.getNotification(token).then((data) => {
+						this.children = data;
+					}).catch((error3)=>{
+						console.log("error3")
+					});
+				}).catch((error2)=>{
+					alert("error2 can't get token")
+				})	
+			}
+		}).catch((error1)=>{
+			console.log("error1")
 		})
 		
 	}
@@ -120,9 +130,9 @@ export class ChildrenPage {
 			console.log("connection ")
 			this.storage.get("rooms").then((rooms)=>{
 
-				console.log("rooms", rooms)
+				// console.log("rooms", rooms)
 
-				this.socket.emit("set", { "topics": ["123123123", "122122122"] });
+				this.socket.emit("set", { "topics": rooms });
 				console.log("socket")
 
 				this.socket.on("serverpublisher", (data) => {
@@ -138,13 +148,13 @@ export class ChildrenPage {
 					this.scheduleNotification();
 
 					let id = data.sid
-					// console.log("id"+ id)
+					console.log("id"+ id)
 					this.storage.get("children").then((ch)=>{
 						// alert("children"+ ch)
 						if (ch != null || ch != undefined) {
 							$.each(ch, (index, child)=>{
 								// alert("child")
-								if (child.tag == id) {
+								if (id == child.tag) {
 									// alert("equal")
 									child.lastMsg = data;
 								}

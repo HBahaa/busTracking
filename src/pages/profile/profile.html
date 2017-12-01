@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="profile-content" padding>
-  <form #profileForm="ngForm" (ngSubmit)="presentToast()">
+<ion-content class="profile-content">
+  <!-- <form #profileForm="ngForm" (ngSubmit)="presentToast()">
     <ion-row> 
       <ion-col>
         <ion-list inset>
@@ -34,5 +34,18 @@
         </ion-list>
       </ion-col>
     </ion-row>
-  </form>
+  </form> -->
+
+  <ion-card>
+    <ion-card-content>
+      <!-- <ion-card-title color="mainColor">{{childData.name}}</ion-card-title> -->
+      <ion-row>
+            <ion-col col-12><br /></ion-col>
+            <ion-col col-4><h2>Name:</h2></ion-col><ion-col col-8><h2>{{name}}</h2></ion-col>
+            <ion-col col-4><h2>Password:</h2></ion-col><ion-col col-8><h2>{{password}}</h2></ion-col>
+            <ion-col col-4><h2>Address:</h2></ion-col><ion-col col-8><h2>{{address}}</h2></ion-col>
+            <ion-col col-4><h2>Phone:</h2></ion-col><ion-col col-8><h2>{{phone}}</h2></ion-col>
+          </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

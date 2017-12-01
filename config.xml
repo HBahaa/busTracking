@@ -99,4 +99,5 @@
     <engine name="android" spec="~6.2.3" />
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="^0.8.5" />
+    <allow-navigation href="http://192.168.1.7:8100" />
 </widget>

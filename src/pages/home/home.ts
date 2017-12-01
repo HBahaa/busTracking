@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, MenuController, Platform } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import 'rxjs/add/operator/map';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 
 import { LoginPage } from '../login/login';
 import { Register1Page } from '../register1/register1';

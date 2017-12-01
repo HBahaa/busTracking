@@ -8,13 +8,12 @@ import * as $ from 'jquery';
 import { ChildrenPage } from '../children/children';
 import { Register1Page } from '../register1/register1';
 import { GetChildrenProvider } from '../../providers/get-children/get-children';
-import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
 
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [GetChildrenProvider, GetNotificationProvider]
+  providers: [GetChildrenProvider]
 })
 
 export class LoginPage {
@@ -23,7 +22,7 @@ export class LoginPage {
   loader:any;
 
   constructor(public navCtrl: NavController, public storage: Storage, private menuCtrl: MenuController, private loadingCtrl: LoadingController,
-              private getChildrenProvider: GetChildrenProvider, private getNotificationProvider: GetNotificationProvider) {
+              private getChildrenProvider: GetChildrenProvider) {
   }
 
   ionViewDidEnter() {
@@ -35,12 +34,12 @@ export class LoginPage {
 
     this.menuCtrl.enable(true);
 
-    this.storage.clear().then(()=>{
+    // this.storage.clear().then(()=>{
 
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid=12345678901234&password=Hb2208",
+        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+this.id+"&password="+this.password,
         "method": "POST",
         "headers": {
           "content-type": "application/json",
@@ -79,9 +78,9 @@ export class LoginPage {
         alert("error when login,Please check internet connection.")
       });
 
-    }).catch(()=>{
-      alert("storage not cleared")
-    })
+    // }).catch(()=>{
+    //   alert("storage not cleared")
+    // })
     
     
     

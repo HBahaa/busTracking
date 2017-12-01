@@ -7,10 +7,13 @@ import * as $ from 'jquery';
 
 import { ChildrenPage } from '../children/children';
 import { MapPage } from '../map/map';
+import { GetChildrenProvider } from '../../providers/get-children/get-children';
+
 
 @Component({
   selector: 'page-register2',
-  templateUrl: 'register2.html'
+  templateUrl: 'register2.html',
+  providers: [GetChildrenProvider]
 })
 
 export class Register2Page {
@@ -19,10 +22,9 @@ export class Register2Page {
   location: any;
   user    : FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController,
+    private storage: Storage, private getChildrenProvider: GetChildrenProvider) {
     this.address = this.navParams.get('param1');
-    // this.address = "طفنيس المطاعنه";
-    // this.location = {"lat":"25.4306841","lng":"32.5261475"};
     this.location = this.navParams.get('param2');
 
     this.user = new FormGroup({
@@ -39,7 +41,6 @@ export class Register2Page {
   }
 
   onSubmit(user){
-    console.log("user=", user._value);
 
     this.menuCtrl.enable(true);
 
@@ -47,8 +48,12 @@ export class Register2Page {
 
       let nid= data.id;
       let secureCode = data.skey
+      data.name = user._value.name;
+      data.password = user._value.password;
+      data.phone = user._value.mob;
+      data.address = this.address;
 
-      var settings = {
+      var settings1 = {
         "async": true,
         "crossDomain": true,
         "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/register?nid="+nid+"&secureCode="+secureCode+"&name="+user._value.name+"&locLat="+this.location.lat+"&locLong="+this.location.lng+"&locDesc="+user._value.address+"&password="+user._value.password,
@@ -63,21 +68,62 @@ export class Register2Page {
         }
       }
 
-      $.ajax(settings).done((response)=>{
-        console.log(response);
+      $.ajax(settings1).done((response)=>{
+
         if(response.success)
         {
-          this.navCtrl.setRoot(ChildrenPage);
+          var settings2 = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+nid+"&password="+user._value.password,
+            "method": "POST",
+            "headers": {
+              "content-type": "application/json",
+              "cache-control": "no-cache",
+              "postman-token": "aaf1634c-7a6c-e7eb-ce6f-8f7a0448616b",
+              "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+              "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
+              "Access-Control-Allow-Origin":"*",
+              "Allow-Control-Allow-Origin":"*"
+            }
+          }
+
+          $.ajax(settings2).then((response)=> {
+           if(response.success)
+            {
+              this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
+                if (flag) {
+                  this.storage.set("token",response.token);
+                  this.storage.set("userData",data);
+                  this.navCtrl.setRoot(ChildrenPage);
+                }else{
+                  alert("flag false in getting children")
+                }
+                
+              });
+              
+            }
+            else{
+              alert("user not allowed to get token")
+            }
+
+          }).catch((err)=>{
+            alert("error when register,Please check internet connection.")
+          });
+
+
         }
         else{
           alert("user not allowed to register")
         }
         
-      }).catch((error)=>{
+      }).fail((error)=>{
         alert("error")
       });
 
 
+    }).catch((err)=>{
+      console.log("error getting userData")
     })
     
   }

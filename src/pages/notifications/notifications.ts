@@ -1,34 +1,88 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import * as $ from 'jquery';
+
+import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
+
 
 @Component({
   selector: 'page-notifications',
-  templateUrl: 'notifications.html'
+  templateUrl: 'notifications.html',
+  providers: [GetNotificationProvider]
 })
 export class NotificationsPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, data: string, date: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  // items: Array<{title: string, data: string, date: string}>= [];
+  items: any= [];
 
-    this.items = [];
-
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        data: 'I\'ve had a pretty messed up day. If we just...',
-        date: '22/08/2017'
-      });
-    }
+  constructor(public navCtrl: NavController, private storage: Storage, private getNotificationProvider: GetNotificationProvider) {
 
   }
 
-  // notificationDetails(item) {
-  //   this.navCtrl.push(NotificationsPage, {
-  //     item: item
-  //   });
-  // }
+  ionViewDidLoad(){
+
+    console.log("ionViewDidLoad");
+
+    let msg = [];
+    this.storage.get("children").then((result)=>{
+      // let children = result;
+
+      $.each(result, (index, child)=>{
+        this.storage.get(child.tag).then((final)=>{
+          msg.push(...final);
+          msg.sort ((a, b)=> {
+            return (a.time > b.time) ? -1 : ((b.time > a.time) ? 1 : 0);
+          });          
+
+          return msg
+        }).then((msg)=>{
+          
+          $.each(msg, (index, value)=>{
+            // console.log("value", JSON.stringify(value))
+            let y = this.getDate(value.time);
+            $.extend( value, y );
+          })
+
+          return msg;
+
+        }).then((items)=>{
+
+          this.items = items;
+
+        }).catch((error1)=>{
+          alert("error1");
+        })
+
+      });
+
+    });
+
+    // this.storage.get("token").then((token)=>{
+    //   this.getNotificationProvider.getNotification(token).then((data) => {
+    //     console.log("data =", data)
+    //   }).catch((err)=>{
+    //     console.log("errrrror")
+    //   });
+    // }).catch((err)=>{
+    //   alert("can't get token")
+    // })
+  }
+
+  getDate(timestamp) {
+
+    timestamp = Number(timestamp);
+    var date = new Date(timestamp);
+
+    var m = (date.getMonth() + 1);
+    var d = date.getDate();
+    var h = date.getHours();
+    var min = date.getMinutes();
+    var s = date.getSeconds();
+
+    var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
+    var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
+
+    return { 'date': formattedDate, 'time': formattedTime };
+  }
 }
