@@ -21,6 +21,7 @@ export class Register2Page {
   address : any;
   location: any;
   user    : FormGroup;
+  rooms:any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController,
     private storage: Storage, private getChildrenProvider: GetChildrenProvider) {
@@ -94,6 +95,11 @@ export class Register2Page {
               this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
                 if (flag) {
                   this.storage.set("token",response.token);
+                  this.storage.get("rooms").then((rooms)=>{
+                    this.rooms = rooms
+                    this.rooms.push(response.data["loc"]["fence_id"]);
+                    this.storage.set("rooms", this.rooms);
+                  })
                   this.storage.set("userData",data);
                   this.navCtrl.setRoot(ChildrenPage);
                 }else{
