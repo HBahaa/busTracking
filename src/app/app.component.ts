@@ -35,6 +35,7 @@ export class MyApp {
     ,public loadingCtrl: LoadingController, private storage: Storage) {
 
     // this.initializeApp();
+    this.storage.clear();
 
     platform.ready().then(() => {
 

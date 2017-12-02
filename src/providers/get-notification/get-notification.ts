@@ -55,7 +55,7 @@ export class GetNotificationProvider {
 
 			      		this.storage.set(child.tag, messages);
             			if (messages.length > 0) {
-            				child.lastMsg = messages[messages.length - 1];
+            				child.lastMsg = messages[0];
             			}
             			else{
             				child.lastMsg = [];

@@ -10,6 +10,7 @@ import * as io from "socket.io-client";
 import { DetailsPage } from '../details/details';
 import { NotificationsPage } from '../notifications/notifications';
 import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
+import { LastNotificationProvider } from '../../providers/last-notification/last-notification';
 import { GetChildrenProvider } from '../../providers/get-children/get-children';
 
 @Component({
@@ -26,7 +27,8 @@ export class ChildrenPage {
 
 	constructor(public navCtrl: NavController, private storage: Storage, public backgroundMode: BackgroundMode,
 				private getNotificationProvider: GetNotificationProvider, private platform: Platform,
-				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider) {	
+				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider,
+				private lastNotificationProvider: LastNotificationProvider) {	
 
 		this.serverConnection();
 
@@ -127,7 +129,7 @@ export class ChildrenPage {
 				console.log("socket")
 
 				this.socket.on("serverpublisher", (data) => {
-					// console.log("serverpublisher ", data);
+					alert("serverpublisher "+ data);
 
 					this.items[0] = {
 						id: 1,
@@ -140,9 +142,10 @@ export class ChildrenPage {
 
 					let id = data.sid
 
+
 					this.storage.get("token").then((token)=>{
 						this.getNotificationProvider.getNotification(token).then((data) => {
-							this.children = data;
+							console.log("data")
 						}).catch((error7)=>{
 							console.log("error5");
 						});
@@ -154,7 +157,6 @@ export class ChildrenPage {
 						if (ch != null || ch != undefined) {
 							$.each(ch, (index, child)=>{
 								if (id == child.tag) {
-									// alert("equal")
 									child.lastMsg = data;
 								}
 							});
