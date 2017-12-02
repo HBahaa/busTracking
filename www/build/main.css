@@ -28273,6 +28273,10 @@ map-page #over_map ion-label {
   color: #aaa;
 }
 
+page-profile ion-card-title {
+  text-align: center;
+}
+
 page-register1 .register1-content {
   background-image: url(../assets/imgs/8.jpg);
   background-size: cover;

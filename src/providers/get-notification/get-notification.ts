@@ -79,7 +79,7 @@ export class GetNotificationProvider {
 	getDate(timestamp) {
 
 	    timestamp = Number(timestamp);
-	    var date = new Date(timestamp);
+	    var date = new Date(timestamp*1000);
 
 	    var m = (date.getMonth() + 1);
 	    var d = date.getDate();

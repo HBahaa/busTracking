@@ -20,6 +20,7 @@ export class LoginPage {
   id: any;
   password: any;
   loader:any;
+  rooms: any = [];
 
   constructor(public navCtrl: NavController, public storage: Storage, private menuCtrl: MenuController, private loadingCtrl: LoadingController,
               private getChildrenProvider: GetChildrenProvider) {
@@ -58,6 +59,13 @@ export class LoginPage {
           this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
             if (flag) {
               this.storage.set("token",response.token);
+              this.storage.get("rooms").then((rooms)=>{
+                this.rooms = rooms
+                this.rooms.push(response.data["loc"]["fence_id"]);
+                this.storage.set("rooms", this.rooms);
+              })
+
+              
               this.loader.dismiss();
               this.navCtrl.setRoot(ChildrenPage);
             }else{

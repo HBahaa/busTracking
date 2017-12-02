@@ -8,6 +8,7 @@ import * as io from "socket.io-client";
 
 
 import { DetailsPage } from '../details/details';
+import { NotificationsPage } from '../notifications/notifications';
 import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
 import { GetChildrenProvider } from '../../providers/get-children/get-children';
 
@@ -31,41 +32,33 @@ export class ChildrenPage {
 
 		platform.ready().then(() => {
 
-			// this.backgroundMode.isActive();
-
-			// this.backgroundMode.on("enable").subscribe(() => {
-			// 	console.log("enabled")
-			// })
-
 			this.backgroundMode.on("activate").subscribe(() => {
 				console.log('activated');
 				LocalNotifications.on('click', (notification, state) => {
-					console.log("notification clicked");
-					console.log("state clicked");
-					let json = JSON.parse(notification.data);
-
-					let confirm = this.alertCtrl.create({
-						title: notification.status,
-						message: json.msg,
-						buttons: [
-							// {
-							// 	text: 'No',
-							// 	handler: () => {
-							// 		console.log('Disagree clicked');
-							// 		confirm.dismiss();
-							// 	}
-							// },
-							{
-								text: 'Ok',
-								handler: () => {
-							    	// console.log('Agree clicked');
-							    	// this.navCtrl.push(DetailsPage, {'param1': json.sid});
-							    	confirm.dismiss()
-								}
-							}
-						]
-				    });
-				    confirm.present();
+					this.navCtrl.setRoot(NotificationsPage)
+					// let json = JSON.parse(notification.data);
+					// let confirm = this.alertCtrl.create({
+					// 	title: notification.status,
+					// 	message: json.msg,
+					// 	buttons: [
+					// 		// {
+					// 		// 	text: 'No',
+					// 		// 	handler: () => {
+					// 		// 		console.log('Disagree clicked');
+					// 		// 		confirm.dismiss();
+					// 		// 	}
+					// 		// },
+					// 		{
+					// 			text: 'Ok',
+					// 			handler: () => {
+					// 		    	// console.log('Agree clicked');
+					// 		    	// this.navCtrl.push(DetailsPage, {'param1': json.sid});
+					// 		    	confirm.dismiss()
+					// 			}
+					// 		}
+					// 	]
+				 //    });
+				 //    confirm.present();
 				});
 			});
 			this.backgroundMode.enable();
@@ -85,11 +78,11 @@ export class ChildrenPage {
 						this.children = res;
 					}else{
 						this.storage.get("token").then((token)=>{
-						this.getNotificationProvider.getNotification(token).then((data) => {
-							this.children = data;
-						}).catch((error5)=>{
-							console.log("error5")
-						});
+							this.getNotificationProvider.getNotification(token).then((data) => {
+								this.children = data;
+							}).catch((error5)=>{
+								console.log("error5")
+							});
 						}).catch((error4)=>{
 							alert("error4 can't get token")
 						})	
@@ -125,11 +118,10 @@ export class ChildrenPage {
 		console.log("serverconnection")
 		this.socketHost = "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9000";
 		this.socket = io(this.socketHost);
+
 		this.socket.on("connect", (msg) => {
 			console.log("connection ")
 			this.storage.get("rooms").then((rooms)=>{
-
-				// console.log("rooms", rooms)
 
 				this.socket.emit("set", { "topics": rooms });
 				console.log("socket")
@@ -147,12 +139,20 @@ export class ChildrenPage {
 					this.scheduleNotification();
 
 					let id = data.sid
-					console.log("id"+ id)
+
+					this.storage.get("token").then((token)=>{
+						this.getNotificationProvider.getNotification(token).then((data) => {
+							this.children = data;
+						}).catch((error7)=>{
+							console.log("error5");
+						});
+					}).catch((error6)=>{
+						alert("error4 can't get token")
+					})
+
 					this.storage.get("children").then((ch)=>{
-						// alert("children"+ ch)
 						if (ch != null || ch != undefined) {
 							$.each(ch, (index, child)=>{
-								// alert("child")
 								if (id == child.tag) {
 									// alert("equal")
 									child.lastMsg = data;
@@ -166,6 +166,16 @@ export class ChildrenPage {
 						}
 					})
 				})
+
+
+
+				this.socket.emit("castUp", 'castup');
+
+				this.socket.on("castDo", (data) => {
+					
+
+				});
+
 			})
 			
 		})	
