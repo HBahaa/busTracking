@@ -48,8 +48,11 @@ var NotificationsPage = (function () {
                     return msg;
                 })
                     .then(function (items) {
-                    _this.items = items;
-                }).catch(function (error1) {
+                    _this.items = items.filter(function (items, index, self) {
+                        return index === self.findIndex(function (t) { return (t.time === items.time && t.sid === items.sid && t.status === items.status); });
+                    });
+                })
+                    .catch(function (error1) {
                     alert("error1");
                 });
             });
@@ -130,7 +133,12 @@ var GetNotificationProvider = (function () {
                         });
                         _this.storage.set(child.tag, messages);
                         if (messages.length > 0) {
-                            child.lastMsg = messages[0];
+                            for (var i = 0; i < messages.length; i++) {
+                                if (messages[i].sid == child.tag) {
+                                    child.lastMsg = messages[i];
+                                    break;
+                                }
+                            }
                         }
                         else {
                             child.lastMsg = [];
@@ -1384,16 +1392,13 @@ var ChildrenPage = (function () {
     };
     ChildrenPage.prototype.serverConnection = function () {
         var _this = this;
-        console.log("serverconnection");
         this.socketHost = "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9000";
         this.socket = __WEBPACK_IMPORTED_MODULE_6_socket_io_client__(this.socketHost);
         this.socket.on("connect", function (msg) {
-            console.log("connection ");
             _this.storage.get("rooms").then(function (rooms) {
                 _this.socket.emit("set", { "topics": rooms });
-                console.log("socket");
                 _this.socket.on("serverpublisher", function (data) {
-                    // console.log("serverpublisher ", data);
+                    // alert("serverpublisher "+ data);
                     _this.items[0] = {
                         id: 1,
                         title: data.status,
@@ -1406,12 +1411,12 @@ var ChildrenPage = (function () {
                     _this.storage.get("token").then(function (token) {
                         _this.getNotificationProvider.getNotification(token).then(function (data) {
                             // this.children = data;
-                            console.log("data");
+                            // alert("data")
                         }).catch(function (error7) {
-                            console.log("error5");
+                            console.log("error7");
                         });
                     }).catch(function (error6) {
-                        alert("error4 can't get token");
+                        alert("error6 can't get token");
                     });
                     _this.storage.get("children").then(function (ch) {
                         if (ch != null || ch != undefined) {

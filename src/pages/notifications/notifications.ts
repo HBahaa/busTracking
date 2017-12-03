@@ -37,22 +37,14 @@ export class NotificationsPage {
 
           return msg
         })
-        // .then((msg)=>{
-          
-        //   $.each(msg, (index, value)=>{
-        //     // console.log("value", JSON.stringify(value))
-        //     let y = this.getDate(value.time);
-        //     $.extend( value, y );
-        //   })
-
-        //   return msg;
-
-        // })
         .then((items)=>{
-
-          this.items = items;
-
-        }).catch((error1)=>{
+          this.items = items.filter((items, index, self) =>
+            index === self.findIndex((t) => (
+              t.time === items.time && t.sid === items.sid && t.status === items.status
+            ))
+          )
+        })
+        .catch((error1)=>{
           alert("error1");
         })
 
@@ -60,21 +52,4 @@ export class NotificationsPage {
 
     });
   }
-
-  // getDate(timestamp) {
-
-  //   timestamp = Number(timestamp);
-  //   var date = new Date(timestamp);
-
-  //   var m = (date.getMonth() + 1);
-  //   var d = date.getDate();
-  //   var h = date.getHours();
-  //   var min = date.getMinutes();
-  //   var s = date.getSeconds();
-
-  //   var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
-  //   var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
-
-  //   return { 'date': formattedDate, 'time': formattedTime };
-  // }
 }

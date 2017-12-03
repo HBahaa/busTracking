@@ -55,7 +55,13 @@ export class GetNotificationProvider {
 
 			      		this.storage.set(child.tag, messages);
             			if (messages.length > 0) {
-            				child.lastMsg = messages[0];
+            				for (let i=0; i< messages.length; i++) {
+            					if (messages[i].sid == child.tag) {
+            						child.lastMsg = messages[i];
+            						break
+            					}
+            				}
+            				
             			}
             			else{
             				child.lastMsg = [];

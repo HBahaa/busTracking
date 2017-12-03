@@ -115,19 +115,15 @@ export class ChildrenPage {
 
 	serverConnection() {
 
-		console.log("serverconnection")
 		this.socketHost = "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9000";
 		this.socket = io(this.socketHost);
 
 		this.socket.on("connect", (msg) => {
-			console.log("connection ")
 			this.storage.get("rooms").then((rooms)=>{
-
 				this.socket.emit("set", { "topics": rooms });
-				console.log("socket")
 
 				this.socket.on("serverpublisher", (data) => {
-					// console.log("serverpublisher ", data);
+					// alert("serverpublisher "+ data);
 
 					this.items[0] = {
 						id: 1,
@@ -144,12 +140,12 @@ export class ChildrenPage {
 					this.storage.get("token").then((token)=>{
 						this.getNotificationProvider.getNotification(token).then((data) => {
 							// this.children = data;
-							console.log("data")
+							// alert("data")
 						}).catch((error7)=>{
-							console.log("error5");
+							console.log("error7");
 						});
 					}).catch((error6)=>{
-						alert("error4 can't get token")
+						alert("error6 can't get token")
 					})
 
 					this.storage.get("children").then((ch)=>{
