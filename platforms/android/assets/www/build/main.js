@@ -43,13 +43,13 @@ var NotificationsPage = (function () {
                 _this.storage.get(child.tag).then(function (final) {
                     msg.push.apply(msg, final);
                     msg.sort(function (a, b) {
-                        return (a.time > b.time) ? -1 : ((b.time > a.time) ? 1 : 0);
+                        return (a.timestamp > b.timestamp) ? -1 : ((b.timestamp > a.timestamp) ? 1 : 0);
                     });
                     return msg;
                 })
                     .then(function (items) {
                     _this.items = items.filter(function (items, index, self) {
-                        return index === self.findIndex(function (t) { return (t.time === items.time && t.sid === items.sid && t.status === items.status); });
+                        return index === self.findIndex(function (t) { return (t.timestamp === items.timestamp && t.sid === items.sid && t.status === items.status); });
                     });
                 })
                     .catch(function (error1) {
@@ -167,7 +167,7 @@ var GetNotificationProvider = (function () {
         var s = date.getSeconds();
         var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
         var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
-        return { 'date': formattedDate, 'time': formattedTime };
+        return { 'date': formattedDate, 'time': formattedTime, 'timestamp': date };
     };
     return GetNotificationProvider;
 }());
@@ -572,9 +572,11 @@ var DetailsPage = (function () {
             _this.childData = _this.navParams.get("param2");
             _this.storage.get(_this.tag).then(function (messages) {
                 _this.messages = messages;
+            }).catch(function (error2) {
+                alert("error 2: " + error2);
             });
-        }).catch(function (error) {
-            alert("error 1: " + error);
+        }).catch(function (error1) {
+            alert("error 1: " + error1);
         });
     }
     DetailsPage.prototype.ionViewDidLoad = function () {

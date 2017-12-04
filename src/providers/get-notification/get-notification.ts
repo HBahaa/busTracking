@@ -96,7 +96,7 @@ export class GetNotificationProvider {
 	    var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
 	    var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
 
-	    return { 'date': formattedDate, 'time': formattedTime };
+	    return { 'date': formattedDate, 'time': formattedTime, 'timestamp': date };
 	}
 
 }

@@ -32,7 +32,7 @@ export class NotificationsPage {
         this.storage.get(child.tag).then((final)=>{
           msg.push(...final);
           msg.sort ((a, b)=> {
-            return (a.time > b.time) ? -1 : ((b.time > a.time) ? 1 : 0);
+            return (a.timestamp > b.timestamp) ? -1 : ((b.timestamp > a.timestamp) ? 1 : 0);
           });          
 
           return msg
@@ -40,7 +40,7 @@ export class NotificationsPage {
         .then((items)=>{
           this.items = items.filter((items, index, self) =>
             index === self.findIndex((t) => (
-              t.time === items.time && t.sid === items.sid && t.status === items.status
+              t.timestamp === items.timestamp && t.sid === items.sid && t.status === items.status
             ))
           )
         })

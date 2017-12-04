@@ -23,10 +23,12 @@ export class DetailsPage {
 			this.childData = this.navParams.get("param2");
 			this.storage.get(this.tag).then((messages)=>{
 				this.messages = messages;
-			})
+			}).catch((error2) => {
+			alert("error 2: "+ error2);
+		});
 
-		}).catch((error) => {
-			alert("error 1: "+ error);
+		}).catch((error1) => {
+			alert("error 1: "+ error1);
 		});
 
 	}
@@ -35,5 +37,7 @@ export class DetailsPage {
 		console.log("ionViewDidLoad")
 		
 	}
+
+
 
 }
