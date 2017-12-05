@@ -33,15 +33,13 @@ export class LoginPage {
 
   login() {
     this.presentLoading();
-
     this.menuCtrl.enable(true);
-
-    // this.storage.clear().then(()=>{
 
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+this.id+"&password="+this.password,
+        // "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+this.id+"&password="+this.password,
+        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid=12345678901234&password=Ah111",
         "method": "POST",
         "headers": {
           "content-type": "application/json",
@@ -55,12 +53,14 @@ export class LoginPage {
       }
 
       $.ajax(settings).then((response)=> {
+        console.log(response)
        if(response.success)
         {
           this.rooms.push(response.data["loc"]["fence_id"]);
           this.storage.set("rooms",this.rooms)
           this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
             if (flag) {
+              console.log(flag)
               this.storage.set("token",response.token);
               this.loader.dismiss();
               this.navCtrl.setRoot(ChildrenPage);
@@ -93,13 +93,6 @@ export class LoginPage {
         this.loader.dismiss();
         alert("error when login,Please check internet connection.")
       });
-
-    // }).catch(()=>{
-    //   alert("storage not cleared")
-    // })
-    
-    
-    
   }
 
   createAccount(){

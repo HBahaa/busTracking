@@ -37,17 +37,15 @@ export class GetChildrenProvider {
 			$.ajax(settings).done((response)=> {
 			  	if(response.success)
 		      	{
-		      		this.storage.get("rooms").then((data)=>{
-		      			$.each(response.data, (index, value)=>{
-					   		value["tag"] = index;
-					   		data.push(index);
-					   		data.push(value.bus_id);
-					   		this.children.push(value);
-							this.storage.set("rooms", data);
-							this.storage.set("children", this.children);
-				        });
-				        resolve(true);
-		      		})
+		    		$.each(response.data, (index, value)=>{
+				   		value["tag"] = index;
+				   		this.rooms.push(index);
+				   		this.rooms.push(value.bus_id);
+				   		this.children.push(value);
+						this.storage.set("rooms", this.rooms);
+						this.storage.set("children", this.children);
+			        });
+			        resolve(true);
 		      	}
 		      	else{
 		       		alert("Not allowed to access children");

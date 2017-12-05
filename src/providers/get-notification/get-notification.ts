@@ -25,8 +25,6 @@ export class GetNotificationProvider {
 
 			$.each(result, (index, child)=>{
 
-				console.log("tag", child.tag);
-
 				let settings = {
 					"async": true,
 					"crossDomain": true,
@@ -46,22 +44,27 @@ export class GetNotificationProvider {
 					if(response.success)
 			      	{
 			      		let messages = response.message;
-
 			      		$.each(messages, (index, value)=>{
 				            let y = this.getDate(value.time);
 				            $.extend( value, y );
 				        });
-
-
 			      		this.storage.set(child.tag, messages);
             			if (messages.length > 0) {
+            				console.log("messages.length > 0")
+            				console.log("child.tag", child.tag)
             				for (let i=0; i< messages.length; i++) {
+            					
+            				console.log("messages[i]", messages[i])
+            				console.log("messages[i].sid", messages[i].sid)
             					if (messages[i].sid == child.tag) {
+            						console.log("messages[i].sid == child.tag")
+            						console.log(messages[i]);
             						child.lastMsg = messages[i];
             						break
-            					}
+            					}else{
+		            				child.lastMsg = [];
+		            			}
             				}
-            				
             			}
             			else{
             				child.lastMsg = [];
@@ -84,8 +87,6 @@ export class GetNotificationProvider {
 
 	getDate(timestamp) {
 
-	    // timestamp = Number(timestamp);
-	    // var date = new Date(timestamp*1000);
 	    var date = new Date(timestamp);
 
 	    var m = (date.getMonth() + 1);
@@ -93,9 +94,6 @@ export class GetNotificationProvider {
 	    var h = date.getHours();
 	    var min = date.getMinutes();
 	    var s = date.getSeconds();
-
-	    // var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
-	    // var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
 
 	    var formattedDate = m + "/" + d + "/" + date.getFullYear();
 	    var formattedTime = h + ":" + min + ":" + s;
