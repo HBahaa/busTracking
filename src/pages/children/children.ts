@@ -30,7 +30,25 @@ export class ChildrenPage {
 
 		// this.serverConnection();
 
-		console.log("constructor")
+
+
+		platform.ready().then(() => {
+
+			this.backgroundMode.on("activate").subscribe(() => {
+				console.log('activated');
+				LocalNotifications.on('click', (notification, state) => {
+					this.navCtrl.setRoot(NotificationsPage);
+				});
+			});
+			this.backgroundMode.enable();
+			
+		}).catch((error) => {
+			alert("error 1: "+ error);
+		});
+	}
+
+	ionViewDidLoad(){
+		console.log("ionViewDidLoad")
 		this.storage.get("children").then((res)=>{
 			if(res != null ){
 				this.storage.get(res[0].tag).then((data)=>{
@@ -39,7 +57,6 @@ export class ChildrenPage {
 					}else{
 						this.storage.get("token").then((token)=>{
 							this.getNotificationProvider.getNotification(token).then((data) => {
-								console.log("data", data)
 								this.children = data;
 							}).catch((error5)=>{
 								alert("error5")
@@ -63,58 +80,8 @@ export class ChildrenPage {
 		}).catch((error1)=>{
 			console.log("error1")
 		})
-
-
-		platform.ready().then(() => {
-
-			this.backgroundMode.on("activate").subscribe(() => {
-				console.log('activated');
-				LocalNotifications.on('click', (notification, state) => {
-					this.navCtrl.setRoot(NotificationsPage);
-				});
-			});
-			this.backgroundMode.enable();
-			
-		}).catch((error) => {
-			alert("error 1: "+ error);
-		});
-	}
-
-	// ionViewDidLoad(){
-	// 	console.log("ionViewDidLoad")
-	// 	this.storage.get("children").then((res)=>{
-	// 		if(res != null ){
-	// 			this.storage.get(res[0].tag).then((data)=>{
-	// 				if (data != null) {
-	// 					this.children = res;
-	// 				}else{
-	// 					this.storage.get("token").then((token)=>{
-	// 						this.getNotificationProvider.getNotification(token).then((data) => {
-	// 							this.children = data;
-	// 						}).catch((error5)=>{
-	// 							alert("error5")
-	// 						});
-	// 					}).catch((error4)=>{
-	// 						alert("error4 can't get token")
-	// 					})	
-	// 				}
-	// 			})	
-	// 		}else{
-	// 			this.storage.get("token").then((token)=>{
-	// 				this.getNotificationProvider.getNotification(token).then((data) => {
-	// 					this.children = data;
-	// 				}).catch((error3)=>{
-	// 					console.log("error3")
-	// 				});
-	// 			}).catch((error2)=>{
-	// 				alert("error2 can't get token")
-	// 			})	
-	// 		}
-	// 	}).catch((error1)=>{
-	// 		console.log("error1")
-	// 	})
 		
-	// }
+	}
 
 	childDetails(tag,child){
 		this.navCtrl.push(DetailsPage, {'param1': tag, 'param2': child})

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, NavParams } from 'ionic-angular';
+import { NavController, MenuController, NavParams, LoadingController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
@@ -22,9 +22,10 @@ export class Register2Page {
   location: any;
   user    : FormGroup;
   rooms:any = [];
+  loader:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController,
-    private storage: Storage, private getChildrenProvider: GetChildrenProvider) {
+    private storage: Storage, private getChildrenProvider: GetChildrenProvider, private loadingCtrl: LoadingController) {
     this.address = this.navParams.get('param1');
     this.location = this.navParams.get('param2');
 
@@ -42,7 +43,7 @@ export class Register2Page {
   }
 
   onSubmit(user){
-
+    this.presentLoading();
     this.menuCtrl.enable(true);
 
     this.storage.get('userData').then((data)=> {
@@ -94,42 +95,38 @@ export class Register2Page {
 
           $.ajax(settings2).then((response)=> {
 
-            alert("login"+ JSON.stringify(response))
-
            if(response.success)
             {
-              alert("response.success"+ JSON.stringify(res.success));
 
+              this.rooms.push(response.data["loc"]["fence_id"]);
+              this.storage.set("rooms",this.rooms);
               this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
                 if (flag) {
-                  alert(flag)
+                  console.log(flag)
                   this.storage.set("token",response.token);
-                  this.storage.get("rooms").then((rooms)=>{
-                    this.rooms = rooms
-                    this.rooms.push(response.data["loc"]["fence_id"]);
-                    this.storage.set("rooms", this.rooms);
-                  })
-                  alert("userData"+JSON.stringify(data))
-                  this.storage.set("userData",data);
+                  this.loader.dismiss();
                   this.navCtrl.setRoot(ChildrenPage);
                 }else{
                   alert("flag false in getting children")
+                  this.loader.dismiss();
                 }
-                
               });
               
             }
             else{
+              this.loader.dismiss();
               alert("user not allowed to get token")
             }
 
           }).catch((err)=>{
+            this.loader.dismiss();
             alert("error when register,Please check internet connection.")
           });
 
 
         }
         else{
+          this.loader.dismiss();
           alert("user not allowed to register")
         }
         
@@ -152,5 +149,11 @@ export class Register2Page {
   locateMe()
   {
     this.navCtrl.setRoot(MapPage);
+  }
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Loading..."
+    });
+    this.loader.present();
   }
 }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { Http, Headers, RequestOptions } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 import * as $ from 'jquery';
@@ -50,15 +49,9 @@ export class GetNotificationProvider {
 				        });
 			      		this.storage.set(child.tag, messages);
             			if (messages.length > 0) {
-            				console.log("messages.length > 0")
-            				console.log("child.tag", child.tag)
             				for (let i=0; i< messages.length; i++) {
-            					
-            				console.log("messages[i]", messages[i])
-            				console.log("messages[i].sid", messages[i].sid)
+
             					if (messages[i].sid == child.tag) {
-            						console.log("messages[i].sid == child.tag")
-            						console.log(messages[i]);
             						child.lastMsg = messages[i];
             						break
             					}else{

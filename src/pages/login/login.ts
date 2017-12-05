@@ -57,7 +57,7 @@ export class LoginPage {
        if(response.success)
         {
           this.rooms.push(response.data["loc"]["fence_id"]);
-          this.storage.set("rooms",this.rooms)
+          this.storage.set("rooms",this.rooms);
           this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
             if (flag) {
               console.log(flag)
