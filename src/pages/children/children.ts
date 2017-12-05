@@ -28,9 +28,7 @@ export class ChildrenPage {
 				private getNotificationProvider: GetNotificationProvider, private platform: Platform,
 				private alertCtrl: AlertController, private getChildrenProvider: GetChildrenProvider) {	
 
-		// this.serverConnection();
-
-
+		this.serverConnection();
 
 		platform.ready().then(() => {
 

@@ -72,11 +72,8 @@ export class Register2Page {
 
       $.ajax(settings1).done((res)=>{
 
-        alert("register"+ JSON.stringify(res));
-
         if(res.success)
         {
-          alert("res.success"+ JSON.stringify(res.success));
           var settings2 = {
             "async": true,
             "crossDomain": true,
@@ -102,7 +99,6 @@ export class Register2Page {
               this.storage.set("rooms",this.rooms);
               this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
                 if (flag) {
-                  console.log(flag)
                   this.storage.set("token",response.token);
                   this.loader.dismiss();
                   this.navCtrl.setRoot(ChildrenPage);
@@ -136,7 +132,7 @@ export class Register2Page {
 
 
     }).catch((err)=>{
-      console.log("error getting userData")
+      alert("error getting userData")
     })
     
   }

@@ -38,8 +38,7 @@ export class LoginPage {
       var settings = {
         "async": true,
         "crossDomain": true,
-        // "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+this.id+"&password="+this.password,
-        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid=12345678901234&password=Ah111",
+        "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/login?nid="+this.id+"&password="+this.password,
         "method": "POST",
         "headers": {
           "content-type": "application/json",
