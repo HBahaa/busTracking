@@ -69,9 +69,8 @@ export class ChildrenPage {
 	}
 
 	ionViewDidLoad(){
-		console.log("ionViewDidLoad")
 		this.storage.get("children").then((res)=>{
-
+			alert("children"+ JSON.stringify(res) )
 			if(res != null ){
 				this.storage.get(res[0].tag).then((data)=>{
 					if (data != null) {
@@ -79,6 +78,7 @@ export class ChildrenPage {
 					}else{
 						this.storage.get("token").then((token)=>{
 							this.getNotificationProvider.getNotification(token).then((data) => {
+								alert("data"+ data)
 								this.children = data;
 							}).catch((error5)=>{
 								console.log("error5")

@@ -21,6 +21,7 @@ export class LoginPage {
   password: any;
   loader:any;
   rooms: any = [];
+  children: any = [];
 
   constructor(public navCtrl: NavController, public storage: Storage, private menuCtrl: MenuController, private loadingCtrl: LoadingController,
               private getChildrenProvider: GetChildrenProvider) {
@@ -56,25 +57,32 @@ export class LoginPage {
       $.ajax(settings).then((response)=> {
        if(response.success)
         {
+          this.rooms.push(response.data["loc"]["fence_id"]);
+          this.storage.set("rooms",this.rooms)
           this.getChildrenProvider.getAllChildren(response.token).then((flag) => {
             if (flag) {
               this.storage.set("token",response.token);
-              this.storage.get("rooms").then((rooms)=>{
-                this.rooms = rooms
-                this.rooms.push(response.data["loc"]["fence_id"]);
-                this.storage.set("rooms", this.rooms);
-              })
-
-              
               this.loader.dismiss();
               this.navCtrl.setRoot(ChildrenPage);
             }else{
               alert("flag false in getting children")
               this.loader.dismiss();
             }
-            
           });
-          
+          // alert("response"+ JSON.stringify(response.data.children) )
+          // $.each(response.data.children, (index, value)=>{
+          //   value["tag"] = index;
+          //   this.rooms.push(index);
+          //   this.rooms.push(value.bus_id);
+          //   this.children.push(value);
+          //   alert("this.children"+ this.children)
+          //   this.storage.set("children", this.children);
+          // });
+          // this.rooms.push(response.data["loc"]["fence_id"])
+          // alert("rooms"+ this.rooms)
+          // this.storage.set("rooms", this.rooms);
+          // this.loader.dismiss();
+          // this.navCtrl.setRoot(ChildrenPage);
         }
         else{
           this.loader.dismiss();

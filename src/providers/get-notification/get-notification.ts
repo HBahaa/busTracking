@@ -84,8 +84,9 @@ export class GetNotificationProvider {
 
 	getDate(timestamp) {
 
-	    timestamp = Number(timestamp);
-	    var date = new Date(timestamp*1000);
+	    // timestamp = Number(timestamp);
+	    // var date = new Date(timestamp*1000);
+	    var date = new Date(timestamp);
 
 	    var m = (date.getMonth() + 1);
 	    var d = date.getDate();
@@ -93,8 +94,11 @@ export class GetNotificationProvider {
 	    var min = date.getMinutes();
 	    var s = date.getSeconds();
 
-	    var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
-	    var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
+	    // var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
+	    // var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
+
+	    var formattedDate = m + "/" + d + "/" + date.getFullYear();
+	    var formattedTime = h + ":" + min + ":" + s;
 
 	    return { 'date': formattedDate, 'time': formattedTime, 'timestamp': date };
 	}

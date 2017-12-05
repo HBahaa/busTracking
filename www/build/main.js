@@ -158,15 +158,18 @@ var GetNotificationProvider = (function () {
         return dfd.promise();
     };
     GetNotificationProvider.prototype.getDate = function (timestamp) {
-        timestamp = Number(timestamp);
-        var date = new Date(timestamp * 1000);
+        // timestamp = Number(timestamp);
+        // var date = new Date(timestamp*1000);
+        var date = new Date(timestamp);
         var m = (date.getMonth() + 1);
         var d = date.getDate();
         var h = date.getHours();
         var min = date.getMinutes();
         var s = date.getSeconds();
-        var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
-        var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
+        // var formattedDate = (m <= 9 ? '0' + m : m) + "/" + (d <= 9 ? '0' + d : d) + "/" + date.getFullYear();
+        // var formattedTime = (h <= 9 ? '0' + h : h) + ":" + (min <= 9 ? '0' + min : min) + ":" + (s <= 9 ? '0' + s : s);
+        var formattedDate = m + "/" + d + "/" + date.getFullYear();
+        var formattedTime = h + ":" + min + ":" + s;
         return { 'date': formattedDate, 'time': formattedTime, 'timestamp': date };
     };
     return GetNotificationProvider;
@@ -697,12 +700,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var Register2Page = (function () {
-    function Register2Page(navCtrl, navParams, menuCtrl, storage, getChildrenProvider) {
+    function Register2Page(navCtrl, navParams, menuCtrl, storage, getChildrenProvider, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menuCtrl = menuCtrl;
         this.storage = storage;
         this.getChildrenProvider = getChildrenProvider;
+        this.loadingCtrl = loadingCtrl;
         this.rooms = [];
         this.address = this.navParams.get('param1');
         this.location = this.navParams.get('param2');
@@ -718,6 +722,7 @@ var Register2Page = (function () {
     };
     Register2Page.prototype.onSubmit = function (user) {
         var _this = this;
+        this.presentLoading();
         this.menuCtrl.enable(true);
         this.storage.get('userData').then(function (data) {
             var nid = data.id;
@@ -759,26 +764,26 @@ var Register2Page = (function () {
                     };
                     __WEBPACK_IMPORTED_MODULE_5_jquery__["ajax"](settings2).then(function (response) {
                         if (response.success) {
+                            _this.rooms.push(response.data["loc"]["fence_id"]);
+                            _this.storage.set("rooms", _this.rooms);
                             _this.getChildrenProvider.getAllChildren(response.token).then(function (flag) {
                                 if (flag) {
                                     _this.storage.set("token", response.token);
-                                    _this.storage.get("rooms").then(function (rooms) {
-                                        _this.rooms = rooms;
-                                        _this.rooms.push(response.data["loc"]["fence_id"]);
-                                        _this.storage.set("rooms", _this.rooms);
-                                    });
-                                    _this.storage.set("userData", data);
+                                    _this.loader.dismiss();
                                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__children_children__["a" /* ChildrenPage */]);
                                 }
                                 else {
+                                    _this.loader.dismiss();
                                     alert("flag false in getting children");
                                 }
                             });
                         }
                         else {
+                            _this.loader.dismiss();
                             alert("user not allowed to get token");
                         }
                     }).catch(function (err) {
+                        _this.loader.dismiss();
                         alert("error when register,Please check internet connection.");
                     });
                 }
@@ -799,6 +804,12 @@ var Register2Page = (function () {
     Register2Page.prototype.locateMe = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_7__map_map__["a" /* MapPage */]);
     };
+    Register2Page.prototype.presentLoading = function () {
+        this.loader = this.loadingCtrl.create({
+            content: "Loading..."
+        });
+        this.loader.present();
+    };
     return Register2Page;
 }());
 Register2Page = __decorate([
@@ -807,7 +818,7 @@ Register2Page = __decorate([
         providers: [__WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */]])
+        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_8__providers_get_children_get_children__["a" /* GetChildrenProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
 ], Register2Page);
 
 //# sourceMappingURL=register2.js.map
@@ -1353,6 +1364,7 @@ var ChildrenPage = (function () {
         var _this = this;
         console.log("ionViewDidLoad");
         this.storage.get("children").then(function (res) {
+            alert("children" + JSON.stringify(res));
             if (res != null) {
                 _this.storage.get(res[0].tag).then(function (data) {
                     if (data != null) {
@@ -1361,6 +1373,7 @@ var ChildrenPage = (function () {
                     else {
                         _this.storage.get("token").then(function (token) {
                             _this.getNotificationProvider.getNotification(token).then(function (data) {
+                                alert("data" + data);
                                 _this.children = data;
                             }).catch(function (error5) {
                                 console.log("error5");
@@ -1509,15 +1522,17 @@ var GetChildrenProvider = (function () {
             };
             __WEBPACK_IMPORTED_MODULE_2_jquery__["ajax"](settings).done(function (response) {
                 if (response.success) {
-                    __WEBPACK_IMPORTED_MODULE_2_jquery__["each"](response.data, function (index, value) {
-                        value["tag"] = index;
-                        _this.rooms.push(index);
-                        _this.rooms.push(value.bus_id);
-                        _this.children.push(value);
-                        _this.storage.set("rooms", _this.rooms);
-                        _this.storage.set("children", _this.children);
+                    _this.storage.get("rooms").then(function (data) {
+                        __WEBPACK_IMPORTED_MODULE_2_jquery__["each"](response.data, function (index, value) {
+                            value["tag"] = index;
+                            data.push(index);
+                            data.push(value.bus_id);
+                            _this.children.push(value);
+                            _this.storage.set("rooms", data);
+                            _this.storage.set("children", _this.children);
+                        });
+                        resolve(true);
                     });
-                    resolve(true);
                 }
                 else {
                     alert("Not allowed to access children");
@@ -1580,6 +1595,7 @@ var LoginPage = (function () {
         this.loadingCtrl = loadingCtrl;
         this.getChildrenProvider = getChildrenProvider;
         this.rooms = [];
+        this.children = [];
     }
     LoginPage.prototype.ionViewDidEnter = function () {
         this.menuCtrl.enable(false);
@@ -1606,14 +1622,11 @@ var LoginPage = (function () {
         };
         __WEBPACK_IMPORTED_MODULE_4_jquery__["ajax"](settings).then(function (response) {
             if (response.success) {
+                _this.rooms.push(response.data["loc"]["fence_id"]);
+                _this.storage.set("rooms", _this.rooms);
                 _this.getChildrenProvider.getAllChildren(response.token).then(function (flag) {
                     if (flag) {
                         _this.storage.set("token", response.token);
-                        _this.storage.get("rooms").then(function (rooms) {
-                            _this.rooms = rooms;
-                            _this.rooms.push(response.data["loc"]["fence_id"]);
-                            _this.storage.set("rooms", _this.rooms);
-                        });
                         _this.loader.dismiss();
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__children_children__["a" /* ChildrenPage */]);
                     }
@@ -1622,6 +1635,20 @@ var LoginPage = (function () {
                         _this.loader.dismiss();
                     }
                 });
+                // alert("response"+ JSON.stringify(response.data.children) )
+                // $.each(response.data.children, (index, value)=>{
+                //   value["tag"] = index;
+                //   this.rooms.push(index);
+                //   this.rooms.push(value.bus_id);
+                //   this.children.push(value);
+                //   alert("this.children"+ this.children)
+                //   this.storage.set("children", this.children);
+                // });
+                // this.rooms.push(response.data["loc"]["fence_id"])
+                // alert("rooms"+ this.rooms)
+                // this.storage.set("rooms", this.rooms);
+                // this.loader.dismiss();
+                // this.navCtrl.setRoot(ChildrenPage);
             }
             else {
                 _this.loader.dismiss();
