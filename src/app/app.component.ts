@@ -34,8 +34,7 @@ export class MyApp {
     private translateService: TranslateService, private keyboard: Keyboard,public toastCtrl:ToastController
     ,public loadingCtrl: LoadingController, private storage: Storage) {
 
-    // this.initializeApp();
-    this.storage.clear();
+    // this.storage.clear();
 
     platform.ready().then(() => {
 

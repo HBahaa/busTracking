@@ -146,7 +146,22 @@ export class ChildrenPage {
 				this.socket.emit("castUp", 'castup');
 
 				this.socket.on("castDo", (data) => {
-					
+					this.storage.get("token").then((token)=>{
+						this.getChildrenProvider.getAllChildren(token).then((flag) => {
+				            if (flag) {
+				            	this.getNotificationProvider.getNotification(token).then((data) => {
+				            		alert("updated");
+								}).catch((error7)=>{
+									alert("error7");
+								});
+				            }else{
+				              alert("flag false in getting children");
+				            }
+				        });
+
+					}).catch((err)=>{
+
+					})
 
 				});
 

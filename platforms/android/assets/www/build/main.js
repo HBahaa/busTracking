@@ -1067,6 +1067,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MyApp = (function () {
     function MyApp(platform, statusBar, splashScreen, translateService, keyboard, toastCtrl, loadingCtrl, storage) {
+        // this.storage.clear();
         var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
@@ -1076,8 +1077,6 @@ var MyApp = (function () {
         this.toastCtrl = toastCtrl;
         this.loadingCtrl = loadingCtrl;
         this.storage = storage;
-        // this.initializeApp();
-        this.storage.clear();
         platform.ready().then(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 console.log("window.cordova && window.cordova.plugins.Keyboard");
@@ -1423,6 +1422,21 @@ var ChildrenPage = (function () {
                 });
                 _this.socket.emit("castUp", 'castup');
                 _this.socket.on("castDo", function (data) {
+                    _this.storage.get("token").then(function (token) {
+                        _this.getChildrenProvider.getAllChildren(token).then(function (flag) {
+                            if (flag) {
+                                _this.getNotificationProvider.getNotification(token).then(function (data) {
+                                    alert("updated");
+                                }).catch(function (error7) {
+                                    alert("error7");
+                                });
+                            }
+                            else {
+                                alert("flag false in getting children");
+                            }
+                        });
+                    }).catch(function (err) {
+                    });
                 });
             });
         });
